@@ -96,5 +96,39 @@
     "ctaHeadline": "Interested in a future project?",
     "ctaBody": "We notify registered contacts ahead of public announcements.",
     "ctaButton": "Register your interest"
+  },
+  "projects": {
+    "meta": "Projects",
+    "index": {
+      "heading": "All projects",
+      "filterAll": "All",
+      "filterCompleted": "Completed",
+      "filterConstruction": "Under construction",
+      "filterPlanned": "Planned"
+    },
+    "case": {
+      "backToAll": "All projects",
+      "sectionFacts": "Project details",
+      "sectionNarrative": "Concept",
+      "sectionLocation": "Location",
+      "sectionSensory": "A day at",
+      "sectionGallery": "Gallery",
+      "tabExteriors": "Exteriors",
+      "tabInteriors": "Interiors",
+      "tabMaterials": "Materials",
+      "labelLocation": "Location",
+      "labelYear": "Year",
+      "labelTypology": "Typology",
+      "labelUnits": "Unit mix",
+      "labelStatus": "Status",
+      "indicativeRender": "Indicative render",
+      "photosFollow": "Photography to follow",
+      "ctaHeadline": "Inquire about this project.",
+      "ctaBody": "Register your interest and we will be in touch directly.",
+      "ctaButton": "Inquire",
+      "statusCompleted": "Completed",
+      "statusConstruction": "Under construction",
+      "statusPlanned": "Planned"
+    }
   }
 }

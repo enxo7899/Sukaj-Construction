@@ -96,5 +96,39 @@
     "ctaHeadline": "I interesuar për një projekt të ardhshëm?",
     "ctaBody": "Ne njoftojmë kontaktet e regjistruara para shpalljeve publike.",
     "ctaButton": "Regjistroni interesin"
+  },
+  "projects": {
+    "meta": "Projektet",
+    "index": {
+      "heading": "Të gjitha projektet",
+      "filterAll": "Të gjitha",
+      "filterCompleted": "Të përfunduara",
+      "filterConstruction": "Në ndërtim",
+      "filterPlanned": "Të planifikuara"
+    },
+    "case": {
+      "backToAll": "Të gjitha projektet",
+      "sectionFacts": "Detajet e projektit",
+      "sectionNarrative": "Koncepti",
+      "sectionLocation": "Lokacioni",
+      "sectionSensory": "Një ditë në",
+      "sectionGallery": "Galeria",
+      "tabExteriors": "Eksteriore",
+      "tabInteriors": "Interiore",
+      "tabMaterials": "Materiale",
+      "labelLocation": "Lokacioni",
+      "labelYear": "Viti",
+      "labelTypology": "Tipologjia",
+      "labelUnits": "Mix njësish",
+      "labelStatus": "Statusi",
+      "indicativeRender": "Render tregues",
+      "photosFollow": "Fotografitë do të pasojnë",
+      "ctaHeadline": "Pyetni për këtë projekt.",
+      "ctaBody": "Regjistroni interesin tuaj dhe ne do t'ju kontaktojmë drejtpërdrejt.",
+      "ctaButton": "Pyetni",
+      "statusCompleted": "Përfunduar",
+      "statusConstruction": "Në ndërtim",
+      "statusPlanned": "Planifikuar"
+    }
   }
 }
