@@ -12,6 +12,7 @@
   "footer": {
     "contact": "contact@sukajconstruction.al",
     "nipt": "NIPT: PLACEHOLDER — to be confirmed",
+    "leje": "All projects carried under Leje Ndërtimi — permit references to be added per project",
     "familyNote": "Part of the Sukaj family of companies · Tirana & Shkodër"
   },
   "home": {
@@ -129,6 +130,36 @@
       "statusCompleted": "Completed",
       "statusConstruction": "Under construction",
       "statusPlanned": "Planned"
+    }
+  },
+  "contact": {
+    "meta": "Contact",
+    "hero": {
+      "label": "Contact",
+      "headline": "Get in touch.",
+      "subline": "We'll respond directly — no agents, no call centres."
+    },
+    "form": {
+      "fieldName": "Full name",
+      "fieldEmail": "Email address",
+      "fieldPhone": "Phone number",
+      "fieldPhoneOptional": "optional",
+      "fieldRegarding": "Regarding",
+      "fieldMessage": "Message",
+      "submit": "Send message",
+      "submitting": "Sending…",
+      "successHeadline": "Message received.",
+      "successBody": "We'll be in touch shortly. For urgent enquiries, write directly to contact@sukajconstruction.al",
+      "successBack": "Back to homepage"
+    },
+    "office": {
+      "label": "Sales office",
+      "address": "Rruga e Kavajës, Tirana",
+      "addressNote": "PLACEHOLDER: confirm office address before publication",
+      "hours": "Mon – Fri · 09:00 – 18:00",
+      "hoursNote": "PLACEHOLDER: confirm opening hours",
+      "email": "contact@sukajconstruction.al",
+      "mapNote": "PLACEHOLDER: replace with real coordinates (41.3275° N, 19.8187° E approximate)"
     }
   }
 }

@@ -12,6 +12,7 @@
   "footer": {
     "contact": "contact@sukajconstruction.al",
     "nipt": "NIPT: PLACEHOLDER — për t'u konfirmuar",
+    "leje": "Të gjitha projektet mbartin Leje Ndërtimi — referencat e lejeve do të shtohen për çdo projekt",
     "familyNote": "Pjesë e familjes së kompanive Sukaj · Tiranë & Shkodër"
   },
   "home": {
@@ -129,6 +130,36 @@
       "statusCompleted": "Përfunduar",
       "statusConstruction": "Në ndërtim",
       "statusPlanned": "Planifikuar"
+    }
+  },
+  "contact": {
+    "meta": "Kontakt",
+    "hero": {
+      "label": "Kontakt",
+      "headline": "Na kontaktoni.",
+      "subline": "Përgjigjem drejtpërdrejt — pa agjentë, pa qendra thirrjesh."
+    },
+    "form": {
+      "fieldName": "Emri i plotë",
+      "fieldEmail": "Adresa e emailit",
+      "fieldPhone": "Numri i telefonit",
+      "fieldPhoneOptional": "opsional",
+      "fieldRegarding": "Lidhur me",
+      "fieldMessage": "Mesazhi",
+      "submit": "Dërgo mesazhin",
+      "submitting": "Po dërgon…",
+      "successHeadline": "Mesazhi u mor.",
+      "successBody": "Do t'ju kontaktojmë së shpejti. Për pyetje urgjente, shkruani drejtpërdrejt në contact@sukajconstruction.al",
+      "successBack": "Kthehu në faqen kryesore"
+    },
+    "office": {
+      "label": "Zyrë shitjesh",
+      "address": "Rruga e Kavajës, Tiranë",
+      "addressNote": "PLACEHOLDER: konfirmo adresën e zyrës para publikimit",
+      "hours": "E Hënë – E Premte · 09:00 – 18:00",
+      "hoursNote": "PLACEHOLDER: konfirmo orarin",
+      "email": "contact@sukajconstruction.al",
+      "mapNote": "PLACEHOLDER: zëvendëso me koordinata reale (41.3275° V, 19.8187° L afërsisht)"
     }
   }
 }
