@@ -1,11 +1,10 @@
 "use client";
 
 // v1 approximation of the design-system §8 hero:
-// Target is a custom GLSL shader that interpolates line/vertex geometry → lit
-// matte volume in a single pass. This pass uses the simpler two-mesh approach:
-// EdgesGeometry wireframe fades OUT while the solid mesh fades IN at the same
-// position. The camera dolly is driven by GSAP ScrollTrigger (no scroll-jacking
-// — ScrollTrigger reads scroll position, never overrides it).
+// Target: custom GLSL shader interpolating line/vertex geometry → lit matte
+// volume. This pass uses a two-mesh approach: EdgesGeometry wireframe fades OUT
+// while a solid mesh fades IN at the same position.
+// Camera dolly driven by GSAP ScrollTrigger (reads scroll; never overrides it).
 
 import { useRef, useEffect, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
@@ -18,19 +17,22 @@ gsap.registerPlugin(ScrollTrigger);
 
 // ─── Tower geometry ────────────────────────────────────────────────────────────
 // Three stacked volumes: podium → main body → narrow crown.
-// Scaled up from the original to fill more of the viewport.
-const PODIUM_GEO = new THREE.BoxGeometry(1.2, 0.28, 0.9);
-const BODY_GEO   = new THREE.BoxGeometry(0.72, 2.1,  0.58);
-const CROWN_GEO  = new THREE.BoxGeometry(0.46, 0.92, 0.36);
+const PODIUM_GEO = new THREE.BoxGeometry(1.3, 0.3, 1.0);
+const BODY_GEO   = new THREE.BoxGeometry(0.8, 2.4, 0.65);
+const CROWN_GEO  = new THREE.BoxGeometry(0.5, 1.0, 0.4);
 
 const PODIUM_EDGES = new THREE.EdgesGeometry(PODIUM_GEO);
 const BODY_EDGES   = new THREE.EdgesGeometry(BODY_GEO);
 const CROWN_EDGES  = new THREE.EdgesGeometry(CROWN_GEO);
 
-// Stack: podium base → body → crown. Total span ≈ -1.54 to +1.82 = 3.36 units.
-const PODIUM_Y = -1.4;
-const BODY_Y   = -0.19;
-const CROWN_Y  =  1.36;
+// Stack: podium base → body → crown. Y positions centre each volume.
+const PODIUM_Y = -1.55;
+const BODY_Y   = -0.15;
+const CROWN_Y  =  1.55;
+
+// Warm travertine solid — clear contrast against #FAF6EE with enough warmth
+// to feel like natural stone once the wireframe dissolves.
+const SOLID_COLOR = "#AE9575";
 
 // ─── CameraRig ─────────────────────────────────────────────────────────────────
 function CameraRig({
@@ -41,18 +43,16 @@ function CameraRig({
   const { camera } = useThree();
 
   useEffect(() => {
-    // Straight-on camera; the tower group is offset in world space to sit
-    // right-of-center, leaving the bottom-left clear for the headline text.
-    camera.position.set(0, 0.2, 4.2);
-    camera.lookAt(0, 0, 0);
+    camera.position.set(0, 0.3, 4.4);
+    camera.lookAt(0.4, 0, 0);
   }, [camera]);
 
   useFrame(() => {
     const p = scrollProgress.current;
-    // Gentle dolly in as user scrolls past the hero
-    camera.position.z = THREE.MathUtils.lerp(4.2, 3.4, p);
-    camera.position.y = THREE.MathUtils.lerp(0.2, 0.5, p);
-    camera.lookAt(0, 0, 0);
+    // Restrained dolly in + slight upward drift as user scrolls past the hero.
+    camera.position.z = THREE.MathUtils.lerp(4.4, 3.6, p);
+    camera.position.y = THREE.MathUtils.lerp(0.3, 0.7, p);
+    camera.lookAt(0.4, 0, 0);
   });
 
   return null;
@@ -68,8 +68,8 @@ function TowerScene({ reducedMotion }: { reducedMotion: boolean }) {
     if (reducedMotion) return;
     const tween = gsap.to(progress, {
       current: 1,
-      duration: 2.2,
-      delay: 0.4,
+      duration: 2.6,
+      delay: 0.5,
       ease: "power2.inOut",
     });
     return () => { tween.kill(); };
@@ -103,12 +103,12 @@ function TowerScene({ reducedMotion }: { reducedMotion: boolean }) {
   ];
 
   return (
-    // Offset right so tower sits in the right half while headline text claims the left.
-    // Rotation gives a slight 3-quarter perspective read.
-    <group position={[1.1, -0.1, 0]} rotation={[0, -0.3, 0]}>
+    // Offset right so tower sits in the right half while headline text claims
+    // the left. Slight Y-axis rotation gives a 3-quarter perspective read.
+    <group position={[1.0, -0.1, 0]} rotation={[0, -0.25, 0]}>
       {volumes.map(({ solid, edges, y }, i) => (
         <group key={i} position={[0, y, 0]}>
-          {/* Wireframe layer — fades out */}
+          {/* Wireframe layer — terracotta glow, fades out */}
           <lineSegments geometry={edges}>
             <lineBasicMaterial
               ref={setWireRef(i)}
@@ -118,13 +118,13 @@ function TowerScene({ reducedMotion }: { reducedMotion: boolean }) {
               depthWrite={false}
             />
           </lineSegments>
-          {/* Solid layer — fades in */}
+          {/* Solid layer — warm stone, fades in */}
           <mesh geometry={solid}>
             <meshStandardMaterial
               ref={setSolidRef(i)}
-              color="#EFE4D5"
-              roughness={0.85}
-              metalness={0.05}
+              color={SOLID_COLOR}
+              roughness={0.88}
+              metalness={0.04}
               transparent
               opacity={reducedMotion ? 1 : 0}
             />
@@ -160,7 +160,7 @@ export function HeroScene({ reducedMotion }: { reducedMotion: boolean }) {
     <div ref={containerRef} className="absolute inset-0">
       <Canvas
         dpr={dpr}
-        camera={{ position: [0, 0.2, 4.2], fov: 42 }}
+        camera={{ position: [0, 0.3, 4.4], fov: 40 }}
         gl={{ antialias: true, alpha: true }}
         style={{ background: "transparent" }}
       >
@@ -169,20 +169,31 @@ export function HeroScene({ reducedMotion }: { reducedMotion: boolean }) {
           onIncline={() => setDpr([1, 2])}
         />
 
-        {/* Lighting */}
-        <ambientLight intensity={0.4} color="#FAF6EE" />
+        {/* Three-point lighting for architectural model quality */}
+
+        {/* Warm ambient base */}
+        <ambientLight intensity={0.5} color="#FFF8F0" />
+
+        {/* Key light — warm, upper-right-front */}
         <directionalLight
-          position={[3, 5, 3]}
-          intensity={1.8}
-          color="#FAF6EE"
-          castShadow={false}
+          position={[4, 7, 3]}
+          intensity={2.4}
+          color="#FFF4E8"
         />
-        {/* Warm accent fill from below — mimics terracotta ground bounce */}
+
+        {/* Cool rim light from behind — separates the form from the background */}
+        <directionalLight
+          position={[-3, 4, -6]}
+          intensity={0.9}
+          color="#C8D8E8"
+        />
+
+        {/* Terracotta bounce from below — mimics warm ground reflection */}
         <pointLight
-          position={[0, -2, 2]}
-          intensity={0.8}
+          position={[0, -3, 2.5]}
+          intensity={0.7}
           color="#B96A43"
-          distance={8}
+          distance={9}
         />
 
         <TowerScene reducedMotion={reducedMotion} />

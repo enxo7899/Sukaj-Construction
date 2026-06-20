@@ -3,7 +3,6 @@ import { projects } from "@/data/projects";
 import { HeroWrapper } from "@/components/home/HeroWrapper";
 import { HomeSections } from "@/components/home/HomeSections";
 
-// Featured projects — first 4 completed entries
 const FEATURED_SLUGS = [
   "rezidenca-bardhe",
   "kodra-e-diellit",
@@ -20,42 +19,42 @@ export default function HomePage() {
 
   return (
     <>
-      {/* ── 1. HERO ────────────────────────────────────────────────────────── */}
-      {/* Text is SSR'd immediately. Canvas is lazy-inited client-side.        */}
+      {/* ── 1. HERO ─────────────────────────────────────────────────────── */}
       <section
-        className="relative w-full h-screen flex flex-col items-start justify-end pb-12 md:pb-16 px-6 md:px-14 overflow-hidden"
+        className="relative w-full h-[100svh] min-h-[580px] overflow-hidden bg-bg"
         aria-label="Hero"
       >
-        {/* 3D canvas — lazy, client-only, falls back on mobile / reduced-motion */}
+        {/* Canvas / SVG — fills the full section */}
         <HeroWrapper />
 
-        {/* Text always renders above the canvas */}
-        <div className="relative z-10 max-w-xl">
-          <p className="font-sans text-xs tracking-[0.25em] uppercase text-accent mb-4">
-            Sukaj Construction
-          </p>
-          <h1 className="font-display text-4xl sm:text-5xl md:text-7xl leading-[1.05] text-text">
-            {t("hero.headline")}
-          </h1>
-          <p className="font-sans text-sm md:text-base text-text/60 mt-4 tracking-wide">
-            {t("hero.subline")}
-          </p>
+        {/* Hero text — pinned to bottom-left, always above canvas */}
+        <div className="absolute inset-x-0 bottom-0 z-10 px-6 md:px-14 pb-10 md:pb-16">
+          {/* Gradient ensures legibility over any canvas state */}
+          <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-bg/85 via-bg/40 to-transparent pointer-events-none" />
+
+          <div className="relative max-w-lg md:max-w-2xl">
+            <h1 className="font-display text-[2.5rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-[6rem] leading-[1.02] text-text">
+              {t("hero.headline")}
+            </h1>
+            <p className="font-sans text-xs md:text-sm text-text/50 mt-4 md:mt-5 tracking-wide">
+              {t("hero.subline")}
+            </p>
+          </div>
         </div>
 
-        {/* Scroll indicator — desktop only */}
+        {/* Scroll cue — desktop only */}
         <div
-          className="hidden md:flex absolute bottom-8 right-14 flex-col items-center gap-2"
+          className="hidden md:flex absolute bottom-10 right-14 flex-col items-center gap-2"
           aria-hidden="true"
         >
-          <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-text/30 [writing-mode:vertical-rl]">
+          <span className="font-sans text-[9px] tracking-[0.25em] uppercase text-text/30 [writing-mode:vertical-rl]">
             scroll
           </span>
-          <div className="w-px h-12 bg-accent/30" />
+          <div className="w-px h-10 bg-accent/20" />
         </div>
       </section>
 
-      {/* ── 2–5: client shell receives translated strings as props ──────────── */}
-      {/* Keeps page.tsx a Server Component while Framer Motion runs client-side */}
+      {/* ── 2–5: client shell — receives translated strings as props ──── */}
       <HomeSections
         positioning={{
           headline: t("positioning.headline"),

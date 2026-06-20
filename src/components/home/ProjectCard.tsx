@@ -5,61 +5,75 @@ import { Link } from "@/i18n/navigation";
 import type { Project } from "@/data/projects";
 
 const STATUS_LABELS: Record<Project["status"], string> = {
-  completed: "Completed",
+  completed:          "Completed",
   "under-construction": "Under construction",
-  planned: "Planned",
+  planned:            "Planned",
 };
-
 const STATUS_LABELS_SQ: Record<Project["status"], string> = {
-  completed: "Përfunduar",
+  completed:          "Përfunduar",
   "under-construction": "Në ndërtim",
-  planned: "Planifikuar",
+  planned:            "Planifikuar",
 };
 
-// Four distinct massing compositions — one per card position.
-// All share the same palette but vary in silhouette so the grid
-// reads as different buildings rather than repeated placeholders.
+// ─── Palette constants (hardcoded so they work inside SVG <defs>) ─────────────
+const C = {
+  bg:      "#FAF6EE",
+  surface: "#EFE4D5",
+  text:    "#241F1A",
+  accent:  "#B96A43",
+  bronze:  "#A98F6E",
+};
+
+// ─── Four distinct massing silhouettes ────────────────────────────────────────
+// Uses radial sky gradient, window-warmth fill, and ground-shadow gradient
+// for more atmospheric depth than flat fills.
 function BuildingIllustration({ index }: { index: number }) {
+  const id = `bld-${index}`;
+
   const configs = [
     // 0 — wide podium + slim tower
     {
-      podium: { x: 30, y: 340, w: 140, h: 48 },
-      body:   { x: 62, y: 148, w: 76, h: 196 },
-      upper:  { x: 74, y: 72,  w: 52, h: 80 },
-      windowCols: [70, 90, 110, 126],
-      windowRows: [158, 186, 214, 242, 270, 298],
-      upperCols: [82, 106],
-      upperRows: [82, 106, 130],
+      podium: { x: 28, y: 338, w: 144, h: 50 },
+      body:   { x: 58, y: 142, w: 84, h: 200 },
+      upper:  { x: 72, y: 62,  w: 60, h: 84 },
+      winCols: [66, 88, 112, 128],
+      winRows: [154, 182, 210, 238, 266, 294],
+      upCols:  [80, 108],
+      upRows:  [74, 100, 126],
+      balconyRows: [210, 266],
     },
-    // 1 — single tall slab, narrow
+    // 1 — tall single slab
     {
-      podium: { x: 50, y: 360, w: 100, h: 32 },
-      body:   { x: 68, y: 100, w: 64, h: 264 },
-      upper:  { x: 76, y: 50,  w: 48, h: 54 },
-      windowCols: [76, 96, 112],
-      windowRows: [112, 140, 168, 196, 224, 252, 280, 308],
-      upperCols: [84, 106],
-      upperRows: [60, 84],
+      podium: { x: 48, y: 356, w: 104, h: 32 },
+      body:   { x: 66, y: 92,  w: 68, h: 268 },
+      upper:  { x: 74, y: 44,  w: 52, h: 52 },
+      winCols: [74, 96, 116],
+      winRows: [104, 132, 160, 188, 216, 244, 272, 300],
+      upCols:  [82, 108],
+      upRows:  [54, 78],
+      balconyRows: [160, 216, 272],
     },
-    // 2 — stepped massing, two setbacks
+    // 2 — stepped massing
     {
-      podium: { x: 24, y: 350, w: 152, h: 40 },
-      body:   { x: 40, y: 180, w: 120, h: 174 },
-      upper:  { x: 60, y: 90,  w: 80,  h: 94 },
-      windowCols: [50, 76, 102, 128, 148],
-      windowRows: [192, 220, 248, 276, 304],
-      upperCols: [68, 92, 116],
-      upperRows: [100, 128, 154],
+      podium: { x: 22, y: 348, w: 156, h: 40 },
+      body:   { x: 38, y: 174, w: 124, h: 178 },
+      upper:  { x: 58, y: 84,  w: 84,  h: 94 },
+      winCols: [48, 74, 100, 128, 150],
+      winRows: [186, 214, 242, 270, 298],
+      upCols:  [66, 92, 118],
+      upRows:  [96, 124, 150],
+      balconyRows: [214, 270],
     },
-    // 3 — two-volume composition side by side
+    // 3 — two-volume composition
     {
-      podium: { x: 26, y: 352, w: 148, h: 38 },
-      body:   { x: 26, y: 158, w: 64, h: 198 },
-      upper:  { x: 110, y: 108, w: 64, h: 248 },
-      windowCols: [36, 56, 72],
-      windowRows: [168, 198, 228, 258, 288, 316],
-      upperCols: [118, 140, 160],
-      upperRows: [118, 148, 178, 208, 238, 268, 298],
+      podium: { x: 24, y: 350, w: 152, h: 38 },
+      body:   { x: 24, y: 150, w: 68, h: 204 },
+      upper:  { x: 108, y: 100, w: 68, h: 254 },
+      winCols: [32, 54, 72],
+      winRows: [162, 192, 222, 252, 282, 312],
+      upCols:  [116, 140, 162],
+      upRows:  [112, 142, 172, 202, 232, 262, 292],
+      balconyRows: [222, 282],
     },
   ] as const;
 
@@ -70,57 +84,101 @@ function BuildingIllustration({ index }: { index: number }) {
       viewBox="0 0 200 420"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="absolute inset-0 w-full h-full"
+      className="absolute inset-0 w-full h-full transition-transform duration-700 ease-[cubic-bezier(0.25,0,0,1)] group-hover:scale-[1.04] origin-center"
       aria-hidden="true"
     >
-      {/* Sky zone */}
-      <rect width="200" height="420" fill="var(--color-surface)" />
-      <rect width="200" height="200" fill="var(--color-bg)" fillOpacity="0.6" />
+      <defs>
+        {/* Radial sky glow — warm light pools at top-centre */}
+        <radialGradient id={`sky-${id}`} cx="50%" cy="18%" r="70%">
+          <stop offset="0%"   stopColor={C.bg} />
+          <stop offset="100%" stopColor={C.surface} />
+        </radialGradient>
+
+        {/* Building face — slight lightening at top (sky reflection) */}
+        <linearGradient id={`bld-${id}`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stopColor={C.surface} stopOpacity="0.9" />
+          <stop offset="100%" stopColor={C.surface} stopOpacity="0.6" />
+        </linearGradient>
+
+        {/* Window warmth — hint of lit interior */}
+        <radialGradient id={`win-${id}`} cx="50%" cy="60%" r="70%">
+          <stop offset="0%"   stopColor={C.accent}  stopOpacity="0.18" />
+          <stop offset="100%" stopColor={C.accent}  stopOpacity="0" />
+        </radialGradient>
+
+        {/* Ground shadow */}
+        <linearGradient id={`gnd-${id}`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stopColor={C.bronze}  stopOpacity="0.12" />
+          <stop offset="100%" stopColor={C.bronze}  stopOpacity="0.26" />
+        </linearGradient>
+      </defs>
+
+      {/* Sky */}
+      <rect width="200" height="420" fill={`url(#sky-${id})`} />
+
+      {/* Ground strip */}
+      <rect x="0" y="370" width="200" height="50" fill={`url(#gnd-${id})`} />
 
       {/* Podium */}
       <rect
         x={c.podium.x} y={c.podium.y}
         width={c.podium.w} height={c.podium.h}
-        fill="var(--color-surface)" fillOpacity="0.7"
-        stroke="var(--color-accent-secondary)" strokeWidth="0.8"
+        fill={`url(#bld-${id})`}
+        stroke={C.bronze} strokeWidth="0.7"
       />
 
       {/* Main body */}
       <rect
         x={c.body.x} y={c.body.y}
         width={c.body.w} height={c.body.h}
-        fill="var(--color-surface)" fillOpacity="0.6"
-        stroke="var(--color-accent-secondary)" strokeWidth="0.8"
+        fill={`url(#bld-${id})`}
+        stroke={C.bronze} strokeWidth="0.7"
       />
 
-      {/* Windows on main body */}
-      {c.windowRows.map((wy) =>
-        c.windowCols.map((wx) => (
+      {/* Window warmth overlay on main body */}
+      <rect
+        x={c.body.x} y={c.body.y}
+        width={c.body.w} height={c.body.h}
+        fill={`url(#win-${id})`}
+      />
+
+      {/* Windows — main body */}
+      {c.winRows.map((wy) =>
+        c.winCols.map((wx) => (
           <rect
             key={`w-${wx}-${wy}`}
-            x={wx} y={wy} width="10" height="14"
-            fill="var(--color-bg)" fillOpacity="0.8"
-            stroke="var(--color-accent-secondary)" strokeWidth="0.5"
+            x={wx} y={wy} width="12" height="16"
+            fill={C.bg} fillOpacity="0.78"
+            stroke={C.bronze} strokeWidth="0.45"
           />
         ))
       )}
+
+      {/* Balcony projections */}
+      {"balconyRows" in c && (c.balconyRows as readonly number[]).map((y) => (
+        <rect
+          key={`bal-${y}`}
+          x={c.body.x - 2} y={y}
+          width={c.body.w + 4} height="3.5"
+          fill={C.surface}
+          stroke={C.accent} strokeWidth="0.5"
+        />
+      ))}
 
       {/* Upper / setback volume */}
       <rect
         x={c.upper.x} y={c.upper.y}
         width={c.upper.w} height={c.upper.h}
-        fill="var(--color-surface)" fillOpacity="0.55"
-        stroke="var(--color-accent-secondary)" strokeWidth="0.8"
+        fill={`url(#bld-${id})`}
+        stroke={C.bronze} strokeWidth="0.7"
       />
-
-      {/* Windows on upper */}
-      {c.upperRows.map((wy) =>
-        c.upperCols.map((wx) => (
+      {c.upRows.map((wy) =>
+        c.upCols.map((wx) => (
           <rect
             key={`u-${wx}-${wy}`}
-            x={wx} y={wy} width="10" height="14"
-            fill="var(--color-bg)" fillOpacity="0.8"
-            stroke="var(--color-accent-secondary)" strokeWidth="0.5"
+            x={wx} y={wy} width="12" height="16"
+            fill={C.bg} fillOpacity="0.78"
+            stroke={C.bronze} strokeWidth="0.45"
           />
         ))
       )}
@@ -129,26 +187,29 @@ function BuildingIllustration({ index }: { index: number }) {
       <line
         x1={c.body.x} y1={c.body.y}
         x2={c.body.x + c.body.w} y2={c.body.y}
-        stroke="var(--color-accent)" strokeWidth="1.2"
+        stroke={C.accent} strokeWidth="1.4"
       />
 
-      {/* Ground shadow */}
+      {/* Ground shadow ellipse */}
       <ellipse
-        cx="100" cy="410" rx="56" ry="7"
-        fill="var(--color-accent-secondary)" fillOpacity="0.15"
+        cx="100" cy="412" rx="58" ry="6"
+        fill={C.accent} fillOpacity="0.10"
       />
     </svg>
   );
 }
 
+// ─── ProjectCard ──────────────────────────────────────────────────────────────
 export function ProjectCard({
   project,
   index,
   locale,
+  viewProject,
 }: {
   project: Project;
   index: number;
   locale: string;
+  viewProject?: string;
 }) {
   const statusLabel =
     locale === "sq"
@@ -157,44 +218,55 @@ export function ProjectCard({
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 32 }}
+      initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-20px" }}
-      transition={{ duration: 0.7, delay: index * 0.1, ease: [0.25, 0, 0, 1] as const }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{
+        duration: 0.75,
+        delay: (index % 2) * 0.1,
+        ease: [0.25, 0, 0, 1] as const,
+      }}
     >
       <Link
         href={`/projects/${project.slug}`}
         className="group block"
         aria-label={project.title}
       >
-        {/* Image / placeholder */}
-        <div className="relative w-full aspect-[4/5] overflow-hidden mb-3 md:mb-4">
-          {/* Indicative render label */}
-          <span className="absolute top-2 left-2 z-10 text-[9px] tracking-widest uppercase text-text/40 font-sans">
+        {/* Image placeholder */}
+        <div className="relative w-full aspect-[4/5] overflow-hidden mb-5">
+          <BuildingIllustration index={index} />
+
+          {/* Indicative label */}
+          <span className="absolute top-3 left-3 z-10 font-sans text-[8px] tracking-widest uppercase text-text/30">
             Indicative render
           </span>
 
-          <BuildingIllustration index={index} />
-
           {/* Hover overlay */}
-          <div className="absolute inset-0 bg-text/0 group-hover:bg-text/8 transition-colors duration-500" />
+          <div className="absolute inset-0 bg-text/0 group-hover:bg-text/5 transition-colors duration-500" />
+
+          {/* View project on hover */}
+          {viewProject && (
+            <span className="absolute bottom-3 right-3 font-sans text-[9px] tracking-widest uppercase text-accent bg-bg/90 px-2.5 py-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              {viewProject} →
+            </span>
+          )}
         </div>
 
-        <div className="flex items-start justify-between gap-3">
+        {/* Metadata */}
+        <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="font-sans text-[10px] tracking-widest uppercase text-accent-secondary mb-1">
+            <p className="font-sans text-[10px] tracking-widest uppercase text-accent-secondary mb-1.5">
               {statusLabel} · {project.year}
             </p>
-            <h3 className="font-display text-base md:text-xl text-text group-hover:text-accent transition-colors duration-300">
+            <h3 className="font-display text-xl md:text-2xl text-text group-hover:text-accent transition-colors duration-300 leading-tight">
               {project.title}
             </h3>
-            <p className="font-sans text-xs md:text-sm text-text/60 mt-0.5">
+            <p className="font-sans text-xs text-text/45 mt-1.5">
               {project.location}
             </p>
           </div>
-          {/* Arrow: always visible on touch, hover-only on desktop */}
           <span
-            className="mt-1 font-sans text-xs tracking-widest uppercase text-accent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap"
+            className="mt-1 text-accent text-sm opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0"
             aria-hidden="true"
           >
             →

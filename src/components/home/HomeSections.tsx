@@ -1,92 +1,92 @@
 "use client";
 
-// Sections 2–5 of the homepage.
-// Lives in a Client Component so Framer Motion scroll-triggered reveals work.
-// All translated strings arrive as props from the Server Component (page.tsx).
+// Sections 2–5 of the homepage — Client Component so Framer Motion works.
+// Translated strings arrive as props from the Server Component (page.tsx).
+// GSAP is reserved for the hero; Framer Motion drives everything here.
 
 import { motion } from "framer-motion";
 import { Link } from "@/i18n/navigation";
 import { ProjectCard } from "./ProjectCard";
 import type { Project } from "@/data/projects";
 
-// Shared fade-up variant used across sections
 const EASE = [0.25, 0, 0, 1] as const;
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: EASE },
-  },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.85, ease: EASE } },
 };
-
+const fadeIn = {
+  hidden: { opacity: 0 },
+  show:   { opacity: 1, transition: { duration: 0.65, ease: EASE } },
+};
 const stagger = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.12 } },
+  show:   { transition: { staggerChildren: 0.12 } },
 };
 
-// ─── Types ─────────────────────────────────────────────────────────────────────
+// ─── Types ────────────────────────────────────────────────────────────────────
 interface HomeSectionsProps {
-  positioning: { headline: string; body: string };
-  projects: { heading: string; viewAll: string; viewProject: string };
-  credibility: {
-    stat1Label: string;
-    stat1Value: string;
-    stat2Label: string;
-    stat2Value: string;
-    stat3Label: string;
-    stat3Value: string;
+  positioning:  { headline: string; body: string };
+  projects:     { heading: string; viewAll: string; viewProject: string };
+  credibility:  {
+    stat1Label: string; stat1Value: string;
+    stat2Label: string; stat2Value: string;
+    stat3Label: string; stat3Value: string;
     nipt: string;
   };
-  cta: { headline: string; body: string; button: string };
+  cta:          { headline: string; body: string; button: string };
   featuredProjects: Project[];
   locale: string;
 }
 
-// ─── Section 2: Positioning statement ─────────────────────────────────────────
-function PositioningSection({
-  headline,
-  body,
-}: {
-  headline: string;
-  body: string;
-}) {
+// ─── Section divider ──────────────────────────────────────────────────────────
+function Divider() {
+  return <div className="border-t border-accent-secondary/20" />;
+}
+
+// ─── Section 2: Positioning statement ────────────────────────────────────────
+function PositioningSection({ headline, body }: { headline: string; body: string }) {
   return (
     <section
-      className="py-20 md:py-44 px-6 md:px-14 max-w-5xl"
+      className="px-6 md:px-14 py-20 md:py-32"
       aria-label="Positioning statement"
     >
       <motion.div
         variants={stagger}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, margin: "-20px" }}
+        viewport={{ once: true, margin: "-80px" }}
       >
-        <motion.p
-          variants={fadeUp}
-          className="font-sans text-xs tracking-[0.25em] uppercase text-accent mb-8"
-        >
-          Developer · Tirana
-        </motion.p>
+        {/* Section label */}
+        <motion.div variants={fadeIn} className="flex items-center gap-3 mb-10 md:mb-14">
+          <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-accent">01</span>
+          <div className="h-px w-8 bg-accent/35" />
+          <span className="font-sans text-[9px] tracking-[0.25em] uppercase text-text/30">Developer · Tirana</span>
+        </motion.div>
+
+        {/* Headline — unconstrained so it fills the column naturally */}
         <motion.h2
           variants={fadeUp}
-          className="font-display text-3xl md:text-5xl lg:text-6xl leading-[1.1] text-text max-w-3xl"
+          className="font-display text-[2.2rem] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.04] text-text max-w-5xl"
         >
           {headline}
         </motion.h2>
-        <motion.p
+
+        {/* Body — offset to the right half on desktop */}
+        <motion.div
           variants={fadeUp}
-          className="font-sans text-base md:text-lg text-text/60 mt-8 max-w-xl leading-relaxed"
+          className="mt-10 md:mt-14 md:flex md:justify-end"
         >
-          {body}
-        </motion.p>
+          <p className="font-sans text-sm md:text-base text-text/50 leading-relaxed max-w-md">
+            {body}
+          </p>
+        </motion.div>
       </motion.div>
     </section>
   );
 }
 
-// ─── Section 3: Featured projects ──────────────────────────────────────────────
+// ─── Section 3: Featured projects ─────────────────────────────────────────────
 function ProjectsSection({
   heading,
   viewAll,
@@ -102,51 +102,54 @@ function ProjectsSection({
 }) {
   return (
     <section
-      className="py-16 md:py-28 px-6 md:px-14 border-t border-accent-secondary/15"
+      className="px-6 md:px-14 py-14 md:py-20"
       aria-label="Featured projects"
     >
       {/* Section header */}
-      <motion.div
-        className="flex items-end justify-between mb-12 md:mb-16"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <h2 className="font-display text-2xl md:text-3xl text-text">
-          {heading}
-        </h2>
+      <div className="flex items-center justify-between mb-10 md:mb-14">
+        <div className="flex items-center gap-3">
+          <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-accent">02</span>
+          <div className="h-px w-8 bg-accent/35" />
+          <h2 className="font-display text-xl md:text-2xl text-text">{heading}</h2>
+        </div>
         <Link
           href="/projects"
-          className="font-sans text-xs tracking-widest uppercase text-accent hover:text-accent-deep transition-colors duration-200 hidden md:block"
+          className="font-sans text-[9px] tracking-widest uppercase text-accent hover:text-accent-deep transition-colors duration-200 hidden md:block"
         >
           {viewAll} →
         </Link>
-      </motion.div>
+      </div>
 
-      {/* Project grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+      {/* 2-column grid — large cards with real visual presence */}
+      <motion.div
+        className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10 lg:gap-12"
+        variants={stagger}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-60px" }}
+      >
         {featuredProjects.map((project, i) => (
           <ProjectCard
             key={project.slug}
             project={project}
             index={i}
             locale={locale}
+            viewProject={viewProject}
           />
         ))}
-      </div>
+      </motion.div>
 
-      {/* Mobile "view all" link */}
+      {/* Mobile "view all" */}
       <motion.div
-        className="mt-10 md:hidden"
+        className="mt-10 sm:hidden"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.3 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
       >
         <Link
           href="/projects"
-          className="font-sans text-xs tracking-widest uppercase text-accent"
+          className="font-sans text-[9px] tracking-widest uppercase text-accent"
         >
           {viewAll} →
         </Link>
@@ -155,22 +158,16 @@ function ProjectsSection({
   );
 }
 
-// ─── Section 4: Credibility / trust strip ──────────────────────────────────────
+// ─── Section 4: Credibility / trust strip ────────────────────────────────────
 function CredibilityStrip({
-  stat1Label,
-  stat1Value,
-  stat2Label,
-  stat2Value,
-  stat3Label,
-  stat3Value,
+  stat1Label, stat1Value,
+  stat2Label, stat2Value,
+  stat3Label, stat3Value,
   nipt,
 }: {
-  stat1Label: string;
-  stat1Value: string;
-  stat2Label: string;
-  stat2Value: string;
-  stat3Label: string;
-  stat3Value: string;
+  stat1Label: string; stat1Value: string;
+  stat2Label: string; stat2Value: string;
+  stat3Label: string; stat3Value: string;
   nipt: string;
 }) {
   const stats = [
@@ -181,34 +178,49 @@ function CredibilityStrip({
 
   return (
     <section
-      className="py-14 md:py-20 px-6 md:px-14 border-t border-accent-secondary/15 bg-surface/40"
+      className="px-6 md:px-14 py-14 md:py-20 bg-surface/35"
       aria-label="Credibility"
     >
+      {/* Section label */}
+      <div className="flex items-center gap-3 mb-10 md:mb-14">
+        <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-accent">03</span>
+        <div className="h-px w-8 bg-accent/35" />
+        <span className="font-sans text-[9px] tracking-[0.25em] uppercase text-text/30">Heritage</span>
+      </div>
+
       <motion.div
-        className="flex flex-col md:flex-row md:items-center md:justify-between gap-10 md:gap-0"
+        className="flex flex-col md:flex-row md:items-end md:justify-between gap-12 md:gap-0"
         variants={stagger}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, margin: "-10px" }}
+        viewport={{ once: true, margin: "-40px" }}
       >
         {/* Stats */}
-        <div className="flex flex-col sm:flex-row gap-10 md:gap-16">
-          {stats.map(({ label, value }) => (
-            <motion.div key={label} variants={fadeUp}>
-              <p className="font-display text-3xl md:text-4xl text-text">
+        <div className="flex flex-col sm:flex-row gap-10 md:gap-0">
+          {stats.map(({ label, value }, i) => (
+            <motion.div
+              key={label}
+              variants={fadeUp}
+              className={`md:pr-16 md:mr-16 ${
+                i < stats.length - 1
+                  ? "md:border-r md:border-accent-secondary/20"
+                  : ""
+              }`}
+            >
+              <p className="font-display text-5xl md:text-6xl text-text leading-none tracking-tight">
                 {value}
               </p>
-              <p className="font-sans text-xs tracking-widest uppercase text-text/50 mt-1">
+              <p className="font-sans text-[9px] tracking-widest uppercase text-text/40 mt-3">
                 {label}
               </p>
             </motion.div>
           ))}
         </div>
 
-        {/* NIPT — quiet legitimacy signal for Albanian buyers */}
+        {/* NIPT */}
         <motion.p
-          variants={fadeUp}
-          className="font-sans text-xs tracking-widest uppercase text-text/30"
+          variants={fadeIn}
+          className="font-sans text-[9px] tracking-widest uppercase text-text/22 md:text-right"
         >
           {nipt}
         </motion.p>
@@ -217,46 +229,53 @@ function CredibilityStrip({
   );
 }
 
-// ─── Section 5: Soft closing CTA ───────────────────────────────────────────────
-function CtaSection({
-  headline,
-  body,
-  button,
-}: {
-  headline: string;
-  body: string;
-  button: string;
-}) {
+// ─── Section 5: Soft CTA ─────────────────────────────────────────────────────
+function CtaSection({ headline, body, button }: { headline: string; body: string; button: string }) {
   return (
     <section
-      className="py-20 md:py-44 px-6 md:px-14 border-t border-accent-secondary/15"
+      className="px-6 md:px-14 py-20 md:py-36"
       aria-label="Contact call to action"
     >
+      {/* Section label */}
+      <div className="flex items-center gap-3 mb-10 md:mb-14">
+        <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-accent">04</span>
+        <div className="h-px w-8 bg-accent/35" />
+        <span className="font-sans text-[9px] tracking-[0.25em] uppercase text-text/30">Inquire</span>
+      </div>
+
       <motion.div
         variants={stagger}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, margin: "-20px" }}
-        className="max-w-xl"
+        viewport={{ once: true, margin: "-60px" }}
       >
         <motion.h2
           variants={fadeUp}
-          className="font-display text-3xl md:text-5xl leading-[1.1] text-text"
+          className="font-display text-[2.2rem] sm:text-5xl md:text-6xl leading-[1.04] text-text max-w-2xl"
         >
           {headline}
         </motion.h2>
+
         <motion.p
           variants={fadeUp}
-          className="font-sans text-base text-text/60 mt-6 leading-relaxed"
+          className="font-sans text-sm md:text-base text-text/45 mt-7 md:mt-9 leading-relaxed max-w-xs md:max-w-sm"
         >
           {body}
         </motion.p>
-        <motion.div variants={fadeUp} className="mt-10">
+
+        <motion.div variants={fadeUp} className="mt-10 md:mt-12">
           <Link
             href="/contact"
-            className="inline-block font-sans text-xs tracking-[0.2em] uppercase text-bg bg-accent hover:bg-accent-deep px-8 py-4 transition-colors duration-300"
+            className="
+              inline-flex items-center gap-4
+              font-sans text-[9px] tracking-[0.24em] uppercase
+              bg-accent hover:bg-accent-deep text-bg
+              px-8 py-4
+              transition-colors duration-300
+            "
           >
             {button}
+            <span aria-hidden="true">→</span>
           </Link>
         </motion.div>
       </motion.div>
@@ -264,21 +283,18 @@ function CtaSection({
   );
 }
 
-// ─── Composed export ───────────────────────────────────────────────────────────
+// ─── Composed export ──────────────────────────────────────────────────────────
 export function HomeSections({
-  positioning,
-  projects,
-  credibility,
-  cta,
-  featuredProjects,
-  locale,
+  positioning, projects, credibility, cta, featuredProjects, locale,
 }: HomeSectionsProps) {
   return (
     <>
+      <Divider />
       <PositioningSection
         headline={positioning.headline}
         body={positioning.body}
       />
+      <Divider />
       <ProjectsSection
         heading={projects.heading}
         viewAll={projects.viewAll}
@@ -286,6 +302,7 @@ export function HomeSections({
         featuredProjects={featuredProjects}
         locale={locale}
       />
+      <Divider />
       <CredibilityStrip
         stat1Label={credibility.stat1Label}
         stat1Value={credibility.stat1Value}
@@ -295,6 +312,7 @@ export function HomeSections({
         stat3Value={credibility.stat3Value}
         nipt={credibility.nipt}
       />
+      <Divider />
       <CtaSection
         headline={cta.headline}
         body={cta.body}
