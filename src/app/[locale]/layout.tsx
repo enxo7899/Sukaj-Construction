@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import "../globals.css";
 
 const fraunces = Fraunces({
@@ -55,9 +56,11 @@ export default async function LocaleLayout({
     >
       <body className="min-h-full flex flex-col bg-bg text-text">
         <NextIntlClientProvider messages={messages}>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <SmoothScroll>
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </SmoothScroll>
         </NextIntlClientProvider>
       </body>
     </html>
