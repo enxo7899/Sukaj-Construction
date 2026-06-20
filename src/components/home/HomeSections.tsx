@@ -54,14 +54,14 @@ function PositioningSection({
 }) {
   return (
     <section
-      className="py-32 md:py-44 px-6 md:px-14 max-w-5xl"
+      className="py-20 md:py-44 px-6 md:px-14 max-w-5xl"
       aria-label="Positioning statement"
     >
       <motion.div
         variants={stagger}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, margin: "-80px" }}
+        viewport={{ once: true, margin: "-20px" }}
       >
         <motion.p
           variants={fadeUp}
@@ -102,7 +102,7 @@ function ProjectsSection({
 }) {
   return (
     <section
-      className="py-20 md:py-28 px-6 md:px-14 border-t border-accent-secondary/15"
+      className="py-16 md:py-28 px-6 md:px-14 border-t border-accent-secondary/15"
       aria-label="Featured projects"
     >
       {/* Section header */}
@@ -181,7 +181,7 @@ function CredibilityStrip({
 
   return (
     <section
-      className="py-16 md:py-20 px-6 md:px-14 border-t border-accent-secondary/15 bg-surface/40"
+      className="py-14 md:py-20 px-6 md:px-14 border-t border-accent-secondary/15 bg-surface/40"
       aria-label="Credibility"
     >
       <motion.div
@@ -189,7 +189,7 @@ function CredibilityStrip({
         variants={stagger}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, margin: "-40px" }}
+        viewport={{ once: true, margin: "-10px" }}
       >
         {/* Stats */}
         <div className="flex flex-col sm:flex-row gap-10 md:gap-16">
@@ -229,14 +229,14 @@ function CtaSection({
 }) {
   return (
     <section
-      className="py-32 md:py-44 px-6 md:px-14 border-t border-accent-secondary/15"
+      className="py-20 md:py-44 px-6 md:px-14 border-t border-accent-secondary/15"
       aria-label="Contact call to action"
     >
       <motion.div
         variants={stagger}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, margin: "-60px" }}
+        viewport={{ once: true, margin: "-20px" }}
         className="max-w-xl"
       >
         <motion.h2

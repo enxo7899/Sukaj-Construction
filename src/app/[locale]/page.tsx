@@ -23,7 +23,7 @@ export default function HomePage() {
       {/* ── 1. HERO ────────────────────────────────────────────────────────── */}
       {/* Text is SSR'd immediately. Canvas is lazy-inited client-side.        */}
       <section
-        className="relative w-full h-screen flex flex-col items-start justify-end pb-16 px-6 md:px-14 overflow-hidden"
+        className="relative w-full h-screen flex flex-col items-start justify-end pb-12 md:pb-16 px-6 md:px-14 overflow-hidden"
         aria-label="Hero"
       >
         {/* 3D canvas — lazy, client-only, falls back on mobile / reduced-motion */}
@@ -34,7 +34,7 @@ export default function HomePage() {
           <p className="font-sans text-xs tracking-[0.25em] uppercase text-accent mb-4">
             Sukaj Construction
           </p>
-          <h1 className="font-display text-5xl md:text-7xl leading-[1.05] text-text">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-7xl leading-[1.05] text-text">
             {t("hero.headline")}
           </h1>
           <p className="font-sans text-sm md:text-base text-text/60 mt-4 tracking-wide">
@@ -42,9 +42,9 @@ export default function HomePage() {
           </p>
         </div>
 
-        {/* Scroll indicator */}
+        {/* Scroll indicator — desktop only */}
         <div
-          className="absolute bottom-8 right-8 md:right-14 flex flex-col items-center gap-2"
+          className="hidden md:flex absolute bottom-8 right-14 flex-col items-center gap-2"
           aria-hidden="true"
         >
           <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-text/30 [writing-mode:vertical-rl]">
