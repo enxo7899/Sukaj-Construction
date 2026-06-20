@@ -42,5 +42,59 @@
       "body": "Ne zhvillojmë ndërtesa rezidenciale në të gjithë qytetin. Kontaktoni për të regjistruar interesin tuaj.",
       "button": "Pyetni për një shtëpi të ardhshme"
     }
+  },
+  "about": {
+    "meta": "Rreth Nesh",
+    "hero": {
+      "label": "Rreth nesh",
+      "headline": "Zhvillues familjar që nga viti 1995.",
+      "subline": "Dy dekada ekspertize para se të dorëzohej apartamenti i parë në Tiranë."
+    },
+    "timelineLabel": "Historia jonë",
+    "t1995Year": "1995",
+    "t1995City": "Shkodër",
+    "t1995Heading": "Themelimi i Sukaj SHPK-së",
+    "t1995Body": "Biznesi familjar u themelua në Shkodër si distribuitor industrial tubash dhe armatutash, duke shërbyer projektet e ndërtimit në të gjithë Shqipërinë veriore. Emri u ndërtua mbi saktësi, besueshmëri dhe marrëdhënie afatgjata me klientët — baza që do të përcaktonte mënyrën se si zhvillojmë ndërtesa.",
+    "t2010Year": "2010",
+    "t2010City": "Tiranë",
+    "t2010Heading": "Themelimi i Sukaj Construction",
+    "t2010Body": "Duke u mbështetur në pesëmbëdhjetë vite ekspertize, Sukaj Construction u themelua në Tiranë për të zhvilluar ndërtesa rezidenciale. Teza themelore: zotëro tokën, kontrolloje procesin e plotë, qëndro pas rezultatit.",
+    "devLabel": "Qasja jonë",
+    "devHeadline": "Zhvillues, jo kontraktor.",
+    "devP1": "Kur një zhvillues zotëron tokën dhe menaxhon çdo fazë të projektit — nga leja e ndërtimit deri në dorëzimin final — interesat e firmës dhe blerësit janë e njëjta gjë. Nuk ka kontraktor për të fajësuar, as furnizues për të cituar.",
+    "devP2": "Ne blejm parcela duke pasur parasysh kushtet specifike të dritës dhe pamjet. Ne drejtojmë briefin e projektimit dhe mbetemi në dialog me arkitektin gjatë planifikimit. Ne menaxhojmë ndërtimin. Dorëzojmë drejtpërdrejt — pa shtresën e menaxhimit të pronës ndërmjet.",
+    "devP3": "Rezultati është një ndërtesë e projektuar si një vendim i vetëm i qëndrueshëm — jo një seri kompromisesh të bëra nga palë me stimuj të ndryshëm.",
+    "sisterNote": "Sukaj Construction është pjesë e të njëjtës familje biznesi si Sukaj SHPK, distribuitor i tubave dhe armatutave industriale i themeluar në Shkodër në vitin 1995.",
+    "ctaHeadline": "Regjistroni interesin tuaj.",
+    "ctaBody": "Ne ndajmë informacione mbi projektet e reja me kontaktet e regjistruara para shpalljes publike.",
+    "ctaButton": "Na kontaktoni"
+  },
+  "process": {
+    "meta": "Si Ndërtojmë",
+    "hero": {
+      "label": "Procesi",
+      "headline": "Si ndërtojmë.",
+      "intro": "Një llogari e drejtpërdrejtë se si një projekt i Sukaj Construction kalon nga vendimi i sitit deri tek çelësat."
+    },
+    "s1Number": "01",
+    "s1Heading": "Toka & Projekti",
+    "s1P1": "Çdo projekt fillon me një vendim sitit, jo me një vendim projektimi. Shikojmë fillimisht orientimin — si lëviz drita e mëngjesit nëpër dhomat e ardhshme, nëse hapësirat e jetesës japin nga jugu ose jugperëndimi, nëse pamjet janë drejt qiellit të hapur.",
+    "s1P2": "Punojmë me planin urban të zhvillimit të Tiranës për të kuptuar volumin e ndërtimit para se të angazhojmë arkitektin. Kur fillon briefi i projektimit, zarfi i ndërtesës dhe vijat kryesore të shikimit janë tashmë të vendosura. Detyra e arkitektit është të zgjidhë logjikën e brendshme të atij zarfi.",
+    "s2Number": "02",
+    "s2Heading": "Arkitektura & Lejet",
+    "s2P1": "Lejet e ndërtimit në Shqipëri lëshohen nëpërmjet platformës e-Leje të administruar nga Agjencia Kombëtare e Planifikimit të Territorit (AKPT) dhe Bashkia e Tiranës. Ne respektojmë sekuencën e plotë të lejeve para fillimit të çfarëdo pune dheu.",
+    "s2P2": "Ne nuk fillojmë ndërtimin e një projekti derisa Leja Ndërtimi të jetë në dorë. Ky angazhim thuhet në çdo marrëveshje blerjeje. Blerësit mund të verifikojnë statusin e lejes drejtpërdrejt nëpërmjet regjistrit publik të AKPT-së.",
+    "s2P3": "Arkitektë dhe inxhinierë të licencuar, të regjistruar pranë Urdhrit të Arkitektit dhe Urdhrit të Inxhinierit, emërohen në çdo leje projekti.",
+    "s3Number": "03",
+    "s3Heading": "Ndërtimi & Materialet",
+    "s3P1": "Përdorim konstruksion me skelet betoni të armuar — standardi strukturor për zonat sizmike në Shqipëri — me mbushje murature dhe sisteme kompozite të izolimit të jashtëm. Për veshjen e fasadës, favorizojmë gurin natyral (travertin, gur gëlqeror) dhe porcelanin e plotë mbi finiturat e suvasë.",
+    "s3P2": "Dyshemetë e brendshme janë prej guri solid ose pllakave të mëdha porcelani. Armaturët specifikohen në një nivel që do të ishim komodë të jetojmë vetë. Ne nuk zëvendësojmë materialet gjatë ndërtimit. Specifikimet e dakordësuara në nënshkrim janë ato që dorëzohen.",
+    "s4Number": "04",
+    "s4Heading": "Cilësia & Dorëzimi",
+    "s4P1": "Para dorëzimit, çdo apartament i nënshtrohet një inspektimi të plotë: test presioni i instalimeve, vazhdueshmëri elektrike, rreshtimi i dyerve dhe dritareve, finim fugash dhe silikoni, dhe zgjidhja e listës së defekteve. E plotësojmë listën e defekteve para datës së dorëzimit, jo pas.",
+    "s4P2": "Paketa e dorëzimit përfshin lejen e ndërtimit, lejen e banimit, vizatimet teknike, specifikimet e materialeve dhe dokumentacionin e garancisë. Mbetemi pika kryesore e kontaktit për pyetjet e ndërtesës pasi çelësat kalojnë dorë.",
+    "ctaHeadline": "I interesuar për një projekt të ardhshëm?",
+    "ctaBody": "Ne njoftojmë kontaktet e regjistruara para shpalljeve publike.",
+    "ctaButton": "Regjistroni interesin"
   }
 }

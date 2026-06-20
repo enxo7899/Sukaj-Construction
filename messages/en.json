@@ -42,5 +42,59 @@
       "body": "We develop residential buildings across the city. Reach out to register your interest.",
       "button": "Inquire about a future home"
     }
+  },
+  "about": {
+    "meta": "About",
+    "hero": {
+      "label": "About",
+      "headline": "A family-owned developer since 1995.",
+      "subline": "Two decades of expertise before the first Tirana apartment was delivered."
+    },
+    "timelineLabel": "Our history",
+    "t1995Year": "1995",
+    "t1995City": "Shkodër",
+    "t1995Heading": "Sukaj SHPK founded",
+    "t1995Body": "The family business was established in Shkodër as an industrial pipe and fittings distributor, serving construction projects across northern Albania. It built its reputation on precision, reliability, and long-standing client relationships — a foundation that would define how we develop buildings.",
+    "t2010Year": "2010",
+    "t2010City": "Tirana",
+    "t2010Heading": "Sukaj Construction founded",
+    "t2010Body": "Drawing on fifteen years of expertise in construction-adjacent trades, Sukaj Construction was established in Tirana to develop residential buildings. The founding thesis: own the land, control the full process, stand behind the result.",
+    "devLabel": "Our approach",
+    "devHeadline": "Developer, not contractor.",
+    "devP1": "When a developer owns the land and manages every stage of a project — from planning permission to final handover — the interests of the firm and the buyer are the same. There is no contractor to blame, no supplier to cite.",
+    "devP2": "We acquire sites with specific light conditions and views in mind. We lead the design brief and remain in dialogue with the architect through planning. We manage the construction. We hand over directly — without a property management layer in between.",
+    "devP3": "The result is a building designed as one coherent decision, not a sequence of least-bad compromises made by parties with different incentives.",
+    "sisterNote": "Sukaj Construction is part of the same family of businesses as Sukaj SHPK, an industrial pipe and fittings distributor established in Shkodër in 1995.",
+    "ctaHeadline": "Register your interest.",
+    "ctaBody": "We share information on new projects with registered contacts before public announcement.",
+    "ctaButton": "Get in touch"
+  },
+  "process": {
+    "meta": "How We Build",
+    "hero": {
+      "label": "Process",
+      "headline": "How we build.",
+      "intro": "A straightforward account of how a Sukaj Construction project moves from a site decision to a set of keys."
+    },
+    "s1Number": "01",
+    "s1Heading": "Land & Design",
+    "s1P1": "Every project begins with a site decision, not a design decision. We look first at orientation — how morning light moves through future rooms, whether living spaces face south or southwest, whether views are to open sky or into neighbouring windows.",
+    "s1P2": "We work with Tirana's urban development plan to understand buildable volume before engaging an architect. When the design brief begins, the building's envelope and key sight-lines are already established. The architect's task is to resolve the interior logic of that envelope: ceiling heights, room proportions, the relationship between circulation space and usable floor area.",
+    "s2Number": "02",
+    "s2Heading": "Architecture & Permits",
+    "s2P1": "Building permits in Albania are issued through the e-Leje platform administered by the National Territorial Planning Agency (AKPT) and the Municipality of Tirana. We comply with the full permitting sequence before any earthwork begins.",
+    "s2P2": "We do not break ground on a project until the Leje Ndërtimi (building permit) is in hand. This commitment is stated in every purchase agreement. Buyers can verify permit status directly through AKPT's public register.",
+    "s2P3": "Licensed architects and engineers registered with the Urdhri i Arkitektit (Order of Architects) and Urdhri i Inxhinierit (Order of Engineers) are named on every project permit.",
+    "s3Number": "03",
+    "s3Heading": "Construction & Materials",
+    "s3P1": "We use reinforced concrete frame construction — the structural standard for seismic zones in Albania — with masonry infill and external insulation composite systems. For facade cladding, we favour natural stone (travertine, limestone) and through-body porcelain over render finishes. The difference in durability over a thirty-year building life is significant.",
+    "s3P2": "Interior floors are solid stone or large-format porcelain tile. Fittings are specified at a level we would be comfortable living with ourselves. We do not substitute materials during the build. The specification agreed at signing is the specification delivered at handover.",
+    "s4Number": "04",
+    "s4Heading": "Quality & Handover",
+    "s4P1": "Before handover, every apartment undergoes a full inspection: pressure-test of plumbing, electrical continuity check, door and window alignment, grout and sealant finish, and snag-list resolution. We complete the snag list before the handover date, not after.",
+    "s4P2": "The handover package includes the construction permit, occupation permit, technical drawings, material specifications, and warranty documentation. We remain the primary point of contact for building questions after the keys change hands.",
+    "ctaHeadline": "Interested in a future project?",
+    "ctaBody": "We notify registered contacts ahead of public announcements.",
+    "ctaButton": "Register your interest"
   }
 }
