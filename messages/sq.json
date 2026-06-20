@@ -1,0 +1,17 @@
+{
+  "nav": {
+    "home": "Kryesore",
+    "about": "Rreth Nesh",
+    "projects": "Projektet",
+    "process": "Procesi",
+    "contact": "Kontakt"
+  },
+  "locale": {
+    "toggle": "EN"
+  },
+  "footer": {
+    "contact": "Na Kontaktoni",
+    "nipt": "NIPT: PLACEHOLDER",
+    "familyNote": "Pjesë e familjes së kompanive Sukaj"
+  }
+}

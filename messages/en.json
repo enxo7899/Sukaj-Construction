@@ -1,0 +1,17 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "process": "Process",
+    "contact": "Contact"
+  },
+  "locale": {
+    "toggle": "SQ"
+  },
+  "footer": {
+    "contact": "Contact Us",
+    "nipt": "NIPT: PLACEHOLDER",
+    "familyNote": "Part of the Sukaj family of companies"
+  }
+}
