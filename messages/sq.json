@@ -13,5 +13,34 @@
     "contact": "Na Kontaktoni",
     "nipt": "NIPT: PLACEHOLDER",
     "familyNote": "Pjesë e familjes së kompanive Sukaj"
+  },
+  "home": {
+    "hero": {
+      "headline": "Një adresë e re mbi Tiranën.",
+      "subline": "Zhvillues rezidencial që nga viti 2010."
+    },
+    "positioning": {
+      "headline": "Ne nuk ndërtojmë thjesht — ne zhvillojmë vende ku njerëzit jetojnë.",
+      "body": "Sukaj Construction zotëron tokën, drejton projektimin dhe ndërton çdo projekt që ofron. Pa ndërmjetës, pa kompromis — vetëm vende të menduar që zgjasin."
+    },
+    "projects": {
+      "heading": "Projekte të zgjedhura",
+      "viewAll": "Shiko të gjitha projektet",
+      "viewProject": "Shiko projektin"
+    },
+    "credibility": {
+      "stat1Label": "Familjar që nga",
+      "stat1Value": "1995",
+      "stat2Label": "Zhvillues që nga",
+      "stat2Value": "2010",
+      "stat3Label": "Ndërtesa të dorëzuara",
+      "stat3Value": "~10",
+      "nipt": "NIPT: PLACEHOLDER"
+    },
+    "cta": {
+      "headline": "Po mendoni të investoni në Tiranë?",
+      "body": "Ne zhvillojmë ndërtesa rezidenciale në të gjithë qytetin. Kontaktoni për të regjistruar interesin tuaj.",
+      "button": "Pyetni për një shtëpi të ardhshme"
+    }
   }
 }

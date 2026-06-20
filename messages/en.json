@@ -13,5 +13,34 @@
     "contact": "Contact Us",
     "nipt": "NIPT: PLACEHOLDER",
     "familyNote": "Part of the Sukaj family of companies"
+  },
+  "home": {
+    "hero": {
+      "headline": "A new address above Tirana.",
+      "subline": "Residential developer since 2010."
+    },
+    "positioning": {
+      "headline": "We don't just build — we develop places people stay.",
+      "body": "Sukaj Construction owns the land, leads the design, and builds every project we deliver. No middlemen, no shortcuts — just considered places that endure."
+    },
+    "projects": {
+      "heading": "Selected projects",
+      "viewAll": "View all projects",
+      "viewProject": "View project"
+    },
+    "credibility": {
+      "stat1Label": "Family-owned since",
+      "stat1Value": "1995",
+      "stat2Label": "Developer since",
+      "stat2Value": "2010",
+      "stat3Label": "Buildings delivered",
+      "stat3Value": "~10",
+      "nipt": "NIPT: PLACEHOLDER"
+    },
+    "cta": {
+      "headline": "Thinking of investing in Tirana?",
+      "body": "We develop residential buildings across the city. Reach out to register your interest.",
+      "button": "Inquire about a future home"
+    }
   }
 }
