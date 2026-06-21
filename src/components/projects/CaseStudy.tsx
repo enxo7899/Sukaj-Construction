@@ -163,7 +163,7 @@ function CaseStudyHero({
   return (
     <section
       className="relative w-full overflow-hidden bg-surface/25"
-      style={{ minHeight: "62vh" }}
+      style={{ minHeight: "100svh" }}
       aria-label="Project hero"
     >
       {/* Back link — top-left, visible once header scrolls away */}
@@ -190,12 +190,14 @@ function CaseStudyHero({
       <div className="absolute inset-y-0 left-0 w-3/4 bg-gradient-to-r from-surface/60 via-surface/25 to-transparent pointer-events-none" />
 
       {/* Text — bottom-left */}
-      <div className="absolute bottom-0 left-0 z-10 px-6 md:px-14 pb-10 md:pb-14">
+      <div className="absolute bottom-0 left-0 z-10 px-6 md:px-14 pb-12 md:pb-20">
+        {/* Gradient scrim for legibility */}
+        <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-bg/80 via-bg/30 to-transparent pointer-events-none" />
         <motion.div
           variants={stagger}
           initial="hidden"
           animate="show"
-          className="max-w-lg md:max-w-xl"
+          className="relative max-w-lg md:max-w-2xl"
         >
           <motion.p
             variants={fadeIn}
@@ -206,17 +208,19 @@ function CaseStudyHero({
 
           <motion.h1
             variants={fadeUp}
-            className="font-display text-[2.4rem] sm:text-5xl md:text-6xl leading-[1.03] text-text"
+            className="font-display text-[2.6rem] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.03] text-text"
           >
             {project.title}
           </motion.h1>
 
-          <motion.p
-            variants={fadeUp}
-            className="font-sans text-sm md:text-base text-text/50 mt-4 md:mt-6 leading-relaxed"
-          >
-            {project.narrative}
-          </motion.p>
+          {project.essence && (
+            <motion.p
+              variants={fadeUp}
+              className="font-sans text-sm md:text-base text-text/55 mt-5 md:mt-6 leading-relaxed max-w-md"
+            >
+              {project.essence}
+            </motion.p>
+          )}
         </motion.div>
       </div>
 

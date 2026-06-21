@@ -17,8 +17,10 @@
   },
   "home": {
     "hero": {
+      "eyebrow": "Residential developer · Tirana",
       "headline": "A new address above Tirana.",
-      "subline": "Residential developer since 2010."
+      "subline": "Residential developer since 2010.",
+      "cta": "Inquire about a future home"
     },
     "positioning": {
       "headline": "We don't just build — we develop places people stay.",
@@ -28,6 +30,12 @@
       "heading": "Selected projects",
       "viewAll": "View all projects",
       "viewProject": "View project"
+    },
+    "place": {
+      "label": "Tirana",
+      "headline": "Rooted in Tirana, built to remain.",
+      "body": "Our buildings follow the city as it climbs — east toward Dajti, up the hillsides where the light lasts longest. A family business with roots in the north, developing places in the capital that are meant to outlast their first owners.",
+      "caption": "Tirana · Dajti ridge"
     },
     "credibility": {
       "stat1Label": "Family-owned since",
@@ -39,8 +47,9 @@
       "nipt": "NIPT: PLACEHOLDER"
     },
     "cta": {
-      "headline": "Thinking of investing in Tirana?",
-      "body": "We develop residential buildings across the city. Reach out to register your interest.",
+      "label": "Inquire",
+      "headline": "Register your interest.",
+      "body": "We share new projects with registered contacts before they are announced. No pressure, no agents — a direct line to the people who build.",
       "button": "Inquire about a future home"
     }
   },

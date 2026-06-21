@@ -17,8 +17,10 @@
   },
   "home": {
     "hero": {
+      "eyebrow": "Zhvillues rezidencial · Tiranë",
       "headline": "Një adresë e re mbi Tiranën.",
-      "subline": "Zhvillues rezidencial që nga viti 2010."
+      "subline": "Zhvillues rezidencial që nga viti 2010.",
+      "cta": "Pyetni për një shtëpi të ardhshme"
     },
     "positioning": {
       "headline": "Ne nuk ndërtojmë thjesht — ne zhvillojmë vende ku njerëzit jetojnë.",
@@ -28,6 +30,12 @@
       "heading": "Projekte të zgjedhura",
       "viewAll": "Shiko të gjitha projektet",
       "viewProject": "Shiko projektin"
+    },
+    "place": {
+      "label": "Tirana",
+      "headline": "Me rrënjë në Tiranë, ndërtuar për të zgjatur.",
+      "body": "Ndërtesat tona ndjekin qytetin teksa ngjitet — drejt Dajtit, lart kodrave ku drita zgjat më shumë. Një biznes familjar me rrënjë në veri, që zhvillon vende në kryeqytet të menduara për të kaluar pronarët e tyre të parë.",
+      "caption": "Tiranë · Kreshta e Dajtit"
     },
     "credibility": {
       "stat1Label": "Familjar që nga",
@@ -39,8 +47,9 @@
       "nipt": "NIPT: PLACEHOLDER"
     },
     "cta": {
-      "headline": "Po mendoni të investoni në Tiranë?",
-      "body": "Ne zhvillojmë ndërtesa rezidenciale në të gjithë qytetin. Kontaktoni për të regjistruar interesin tuaj.",
+      "label": "Pyetni",
+      "headline": "Regjistroni interesin tuaj.",
+      "body": "Ne ndajmë projektet e reja me kontaktet e regjistruara para se të shpallen. Pa presion, pa agjentë — një lidhje e drejtpërdrejtë me ata që ndërtojnë.",
       "button": "Pyetni për një shtëpi të ardhshme"
     }
   },

@@ -115,12 +115,81 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
   body {
     @apply bg-background text-foreground font-sans;
+    /* Warm paper grain — barely-there texture so the ivory never reads as flat web-white */
+    background-image:
+      radial-gradient(ellipse 120% 80% at 50% -10%, rgba(185, 106, 67, 0.04), transparent 60%),
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    background-attachment: fixed;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
   }
   html {
     @apply font-sans;
+  }
+
+  /* Albanian ë/ç render correctly in Fraunces — keep ligatures + kerning on */
+  .font-display {
+    font-feature-settings: "kern" 1, "liga" 1;
+    letter-spacing: -0.018em;
+  }
+
+  /* Quiet, visible focus state across the warm palette (replaces the heavy ring) */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+  /* don't double-outline mouse users */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  ::selection {
+    background: color-mix(in oklch, var(--color-accent) 26%, transparent);
+    color: var(--color-text);
+  }
+}
+
+/* ─── Editorial utilities ────────────────────────────────────────────────── */
+@layer utilities {
+  /* Fluid sculptural display sizes — clamp(min, vw, max) */
+  .text-display-xl {
+    font-size: clamp(2.6rem, 7vw, 7rem);
+    line-height: 0.96;
+    letter-spacing: -0.03em;
+  }
+  .text-display-lg {
+    font-size: clamp(2.25rem, 6.5vw, 6.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+  }
+  .text-display-md {
+    font-size: clamp(1.9rem, 4.4vw, 4rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+  }
+
+  /* Quiet uppercase metadata label */
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.625rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Hairline rule using the bronze accent */
+  .rule-bronze {
+    background: color-mix(in oklch, var(--color-accent-secondary) 28%, transparent);
   }
 }
