@@ -25,6 +25,7 @@ export default function ProjectsPage() {
       locale={locale}
       viewProject={tHome("projects.viewProject")}
       ui={{
+        label:              t("index.label"),
         heading:            t("index.heading"),
         filterAll:          t("index.filterAll"),
         filterCompleted:    t("index.filterCompleted"),

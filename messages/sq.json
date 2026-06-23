@@ -1,4 +1,9 @@
 {
+  "misc": {
+    "tagline":   "Tiranë · Shqipëri · Est. 2010",
+    "openMenu":  "Hap menynë",
+    "closeMenu": "Mbyll menynë"
+  },
   "nav": {
     "home": "Kryesore",
     "about": "Rreth Nesh",
@@ -42,6 +47,12 @@
       "headline": "Po mendoni të investoni në Tiranë?",
       "body": "Ne zhvillojmë ndërtesa rezidenciale në të gjithë qytetin. Kontaktoni për të regjistruar interesin tuaj.",
       "button": "Pyetni për një shtëpi të ardhshme"
+    },
+    "misc": {
+      "scroll":           "lëviz",
+      "sectionDeveloper": "Zhvillues · Tiranë",
+      "sectionHeritage":  "Trashëgimia",
+      "sectionInquire":   "Pyetni"
     }
   },
   "about": {
@@ -66,9 +77,10 @@
     "devP2": "Ne blejm parcela duke pasur parasysh kushtet specifike të dritës dhe pamjet. Ne drejtojmë briefin e projektimit dhe mbetemi në dialog me arkitektin gjatë planifikimit. Ne menaxhojmë ndërtimin. Dorëzojmë drejtpërdrejt — pa shtresën e menaxhimit të pronës ndërmjet.",
     "devP3": "Rezultati është një ndërtesë e projektuar si një vendim i vetëm i qëndrueshëm — jo një seri kompromisesh të bëra nga palë me stimuj të ndryshëm.",
     "sisterNote": "Sukaj Construction është pjesë e të njëjtës familje biznesi si Sukaj SHPK, distribuitor i tubave dhe armatutave industriale i themeluar në Shkodër në vitin 1995.",
-    "ctaHeadline": "Regjistroni interesin tuaj.",
-    "ctaBody": "Ne ndajmë informacione mbi projektet e reja me kontaktet e regjistruara para shpalljes publike.",
-    "ctaButton": "Na kontaktoni"
+    "ctaHeadline":    "Regjistroni interesin tuaj.",
+    "ctaBody":        "Ne ndajmë informacione mbi projektet e reja me kontaktet e regjistruara para shpalljes publike.",
+    "ctaButton":      "Na kontaktoni",
+    "sectionInquire": "Pyetni"
   },
   "process": {
     "meta": "Si Ndërtojmë",
@@ -94,13 +106,15 @@
     "s4Heading": "Cilësia & Dorëzimi",
     "s4P1": "Para dorëzimit, çdo apartament i nënshtrohet një inspektimi të plotë: test presioni i instalimeve, vazhdueshmëri elektrike, rreshtimi i dyerve dhe dritareve, finim fugash dhe silikoni, dhe zgjidhja e listës së defekteve. E plotësojmë listën e defekteve para datës së dorëzimit, jo pas.",
     "s4P2": "Paketa e dorëzimit përfshin lejen e ndërtimit, lejen e banimit, vizatimet teknike, specifikimet e materialeve dhe dokumentacionin e garancisë. Mbetemi pika kryesore e kontaktit për pyetjet e ndërtesës pasi çelësat kalojnë dorë.",
-    "ctaHeadline": "I interesuar për një projekt të ardhshëm?",
-    "ctaBody": "Ne njoftojmë kontaktet e regjistruara para shpalljeve publike.",
-    "ctaButton": "Regjistroni interesin"
+    "ctaHeadline":    "I interesuar për një projekt të ardhshëm?",
+    "ctaBody":        "Ne njoftojmë kontaktet e regjistruara para shpalljeve publike.",
+    "ctaButton":      "Regjistroni interesin",
+    "sectionInquire": "Pyetni"
   },
   "projects": {
     "meta": "Projektet",
     "index": {
+      "label":   "Projektet",
       "heading": "Të gjitha projektet",
       "filterAll": "Të gjitha",
       "filterCompleted": "Të përfunduara",
@@ -126,10 +140,12 @@
       "photosFollow": "Fotografitë do të pasojnë",
       "ctaHeadline": "Pyetni për këtë projekt.",
       "ctaBody": "Regjistroni interesin tuaj dhe ne do t'ju kontaktojmë drejtpërdrejt.",
-      "ctaButton": "Pyetni",
-      "statusCompleted": "Përfunduar",
+      "ctaButton":          "Pyetni",
+      "statusCompleted":    "Përfunduar",
       "statusConstruction": "Në ndërtim",
-      "statusPlanned": "Planifikuar"
+      "statusPlanned":      "Planifikuar",
+      "noPricing":          "Nuk shfaqen çmime apo informacione mbi disponueshmërinë — kontaktoni për diskutim",
+      "sectionInquire":     "Pyetni"
     }
   },
   "contact": {
@@ -158,8 +174,9 @@
       "addressNote": "PLACEHOLDER: konfirmo adresën e zyrës para publikimit",
       "hours": "E Hënë – E Premte · 09:00 – 18:00",
       "hoursNote": "PLACEHOLDER: konfirmo orarin",
-      "email": "contact@sukajconstruction.al",
-      "mapNote": "PLACEHOLDER: zëvendëso me koordinata reale (41.3275° V, 19.8187° L afërsisht)"
+      "email":    "contact@sukajconstruction.al",
+      "mapNote":  "PLACEHOLDER: zëvendëso me koordinata reale (41.3275° V, 19.8187° L afërsisht)",
+      "mapLabel": "Lokacion tregues · Tiranë"
     }
   }
 }

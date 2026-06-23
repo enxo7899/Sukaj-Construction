@@ -36,6 +36,7 @@ interface OfficeUi {
   address: string;
   hours: string;
   email: string;
+  mapLabel: string;
 }
 
 interface ContactContentProps {
@@ -48,7 +49,7 @@ interface ContactContentProps {
 // PLACEHOLDER: replace this SVG with a real embedded map component once
 // the office address is confirmed. Placeholder coordinates ~41.3275°N, 19.8187°E
 // (Tirana city centre). Integrate OpenStreetMap or Mapbox when ready.
-function TiranaMapPlaceholder() {
+function TiranaMapPlaceholder({ mapLabel }: { mapLabel: string }) {
   return (
     <div className="relative w-full aspect-[4/3] bg-surface/60 border border-accent-secondary/15 overflow-hidden">
       <svg
@@ -131,7 +132,7 @@ function TiranaMapPlaceholder() {
 
       {/* Map label */}
       <span className="absolute bottom-3 left-3 font-sans text-[8px] tracking-widest uppercase text-text/25">
-        Indicative location · Tirana
+        {mapLabel}
       </span>
     </div>
   );
@@ -187,7 +188,7 @@ function FloatingInput({
           peer-focus:text-accent peer-focus:tracking-widest
           peer-[:not(:placeholder-shown)]:-translate-y-4
           peer-[:not(:placeholder-shown)]:scale-[0.72]
-          peer-[:not(:placeholder-shown)]:text-text/45
+          peer-[:not(:placeholder-shown)]:text-text-soft
           peer-[:not(:placeholder-shown)]:tracking-widest
         "
       >
@@ -245,7 +246,7 @@ function FloatingTextarea({
           peer-focus:text-accent peer-focus:tracking-widest
           peer-[:not(:placeholder-shown)]:-translate-y-4
           peer-[:not(:placeholder-shown)]:scale-[0.72]
-          peer-[:not(:placeholder-shown)]:text-text/45
+          peer-[:not(:placeholder-shown)]:text-text-soft
           peer-[:not(:placeholder-shown)]:tracking-widest
         "
       >
@@ -272,7 +273,7 @@ function SuccessState({ ui }: { ui: Pick<FormUi, "successHeadline" | "successBod
         </div>
         <h2 className="font-display text-2xl md:text-3xl text-text">{ui.successHeadline}</h2>
       </div>
-      <p className="font-sans text-sm text-text/50 leading-relaxed max-w-sm mb-8">
+      <p className="font-sans text-sm text-text-soft leading-relaxed max-w-sm mb-8">
         {ui.successBody}
       </p>
       <Link
@@ -325,20 +326,20 @@ export function ContactContent({ hero, form, office }: ContactContentProps) {
             variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: 0.6, ease: EASE } } }}
             className="flex items-center gap-3 mb-8"
           >
-            <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-accent">{hero.label}</span>
-            <div className="h-px w-8 bg-accent/35" />
+            <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent">{hero.label}</span>
+            <div className="h-px w-10 bg-accent/40" />
           </motion.div>
 
           <motion.h1
             variants={fadeUp}
-            className="font-display text-[2.4rem] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.04] text-text"
+            className="font-display font-light text-[2.6rem] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.0] text-text"
           >
             {hero.headline}
           </motion.h1>
 
           <motion.p
             variants={fadeUp}
-            className="font-sans text-sm md:text-base text-text/45 mt-5 leading-relaxed max-w-sm"
+            className="font-sans text-sm md:text-base text-text-soft mt-5 leading-relaxed max-w-sm"
           >
             {hero.subline}
           </motion.p>
@@ -441,13 +442,13 @@ export function ContactContent({ hero, form, office }: ContactContentProps) {
               </p>
               <div className="space-y-1.5">
                 <p className="font-sans text-sm text-text/70">{office.address}</p>
-                <p className="font-sans text-sm text-text/50">{office.hours}</p>
-                <p className="font-sans text-sm text-text/50">{office.email}</p>
+                <p className="font-sans text-sm text-text-soft">{office.hours}</p>
+                <p className="font-sans text-sm text-text-soft">{office.email}</p>
               </div>
             </div>
 
             {/* Map placeholder */}
-            <TiranaMapPlaceholder />
+            <TiranaMapPlaceholder mapLabel={office.mapLabel} />
           </motion.div>
 
         </div>

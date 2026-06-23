@@ -16,12 +16,13 @@ const STATUS_LABELS_SQ: Record<Project["status"], string> = {
 };
 
 // ─── Palette constants (hardcoded so they work inside SVG <defs>) ─────────────
+// Kept in sync with the premium tokens in globals.css.
 const C = {
-  bg:      "#FAF6EE",
-  surface: "#EFE4D5",
-  text:    "#241F1A",
-  accent:  "#B96A43",
-  bronze:  "#A98F6E",
+  bg:      "#F4EFE6",
+  surface: "#EBE1D3",
+  text:    "#211D18",
+  accent:  "#B25F38",
+  bronze:  "#A3895F",
 };
 
 // ─── Four distinct massing silhouettes ────────────────────────────────────────
@@ -232,21 +233,21 @@ export function ProjectCard({
         className="group block"
         aria-label={project.title}
       >
-        {/* Image placeholder */}
-        <div className="relative w-full aspect-[4/5] overflow-hidden mb-5">
+        {/* Image plate — framed, warm, with a hairline edge for editorial weight */}
+        <div className="relative w-full aspect-[4/5] overflow-hidden mb-5 bg-surface-deep border border-accent-secondary/20 group-hover:border-accent/35 transition-colors duration-500">
           <BuildingIllustration index={index} />
 
           {/* Indicative label */}
-          <span className="absolute top-3 left-3 z-10 font-sans text-[8px] tracking-widest uppercase text-text/30">
+          <span className="absolute top-3.5 left-3.5 z-10 font-sans text-[8px] tracking-[0.2em] uppercase text-text/35">
             Indicative render
           </span>
 
-          {/* Hover overlay */}
-          <div className="absolute inset-0 bg-text/0 group-hover:bg-text/5 transition-colors duration-500" />
+          {/* Hover overlay — warms slightly */}
+          <div className="absolute inset-0 bg-accent/0 group-hover:bg-accent/[0.04] transition-colors duration-500" />
 
           {/* View project on hover */}
           {viewProject && (
-            <span className="absolute bottom-3 right-3 font-sans text-[9px] tracking-widest uppercase text-accent bg-bg/90 px-2.5 py-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <span className="absolute bottom-3.5 right-3.5 font-sans text-[9px] tracking-[0.2em] uppercase text-accent bg-bg/92 backdrop-blur-sm px-3 py-1.5 translate-y-1 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-400">
               {viewProject} →
             </span>
           )}
@@ -255,18 +256,18 @@ export function ProjectCard({
         {/* Metadata */}
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="font-sans text-[10px] tracking-widest uppercase text-accent-secondary mb-1.5">
+            <p className="font-sans text-[10px] tracking-[0.18em] uppercase text-accent-secondary mb-2">
               {statusLabel} · {project.year}
             </p>
             <h3 className="font-display text-xl md:text-2xl text-text group-hover:text-accent transition-colors duration-300 leading-tight">
               {project.title}
             </h3>
-            <p className="font-sans text-xs text-text/45 mt-1.5">
+            <p className="font-sans text-xs text-text-soft mt-2">
               {project.location}
             </p>
           </div>
           <span
-            className="mt-1 text-accent text-sm opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0"
+            className="mt-1 text-accent text-sm opacity-100 md:opacity-0 md:group-hover:opacity-100 md:-translate-x-1 md:group-hover:translate-x-0 transition-all duration-300 flex-shrink-0"
             aria-hidden="true"
           >
             →

@@ -50,6 +50,7 @@ export default function ProcessPage() {
         body:     t("ctaBody"),
         button:   t("ctaButton"),
       }}
+      sectionInquire={t("sectionInquire")}
     />
   );
 }

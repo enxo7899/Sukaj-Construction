@@ -9,6 +9,7 @@
 // entirely so the page uses native scroll without any interpolation.
 
 import { useEffect } from "react";
+import { MotionConfig } from "framer-motion";
 import Lenis from "lenis";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -43,5 +44,9 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  return <>{children}</>;
+  return (
+    <MotionConfig reducedMotion="user">
+      {children}
+    </MotionConfig>
+  );
 }

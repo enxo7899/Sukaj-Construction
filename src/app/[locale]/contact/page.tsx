@@ -40,10 +40,11 @@ export default function ContactPage() {
           successBack:        t("form.successBack"),
         }}
         office={{
-          label:   t("office.label"),
-          address: t("office.address"),
-          hours:   t("office.hours"),
-          email:   t("office.email"),
+          label:    t("office.label"),
+          address:  t("office.address"),
+          hours:    t("office.hours"),
+          email:    t("office.email"),
+          mapLabel: t("office.mapLabel"),
         }}
       />
     </Suspense>

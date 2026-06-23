@@ -6,30 +6,32 @@
 
 /* ─── Brand color tokens ─────────────────────────────────────────────────── */
 :root {
-  /* Sukaj Construction brand palette */
-  --color-bg: #faf6ee;           /* Alabaster — dominant background */
-  --color-surface: #efe4d5;      /* Warm Sand — cards, section backgrounds */
-  --color-text: #241f1a;         /* Espresso — primary text, warm near-black */
-  --color-accent: #b96a43;       /* Terracotta — CTAs, hero glow, links */
-  --color-accent-secondary: #a98f6e; /* Aged Bronze — metadata, hover, borders */
-  --color-accent-deep: #8c421f;  /* Iron Red — emphasis moments only */
-  --color-accent-muted: #4e5340; /* Balkan Laurel — sustainability/certifications */
+  /* Sukaj Construction brand palette — warm mineral luxury (premium pass) */
+  --color-bg: #f4efe6;           /* Alabaster — warm ivory canvas, never sterile white */
+  --color-surface: #ebe1d3;      /* Warm Travertine — section bands, cards */
+  --color-surface-deep: #e2d6c4; /* Deeper sand — second-level layering for rhythm */
+  --color-text: #211d18;         /* Obsidian Umber — warm near-black, high contrast */
+  --color-text-soft: #5c5448;    /* Muted umber — secondary prose, AA-safe on bg */
+  --color-accent: #b25f38;       /* Terracotta clay — CTAs, hero glow, links */
+  --color-accent-secondary: #a3895f; /* Champagne bronze — metadata, fine borders */
+  --color-accent-deep: #8a3d1c;  /* Iron red — emphasis, hover-deepen */
+  --color-accent-muted: #4e5340; /* Balkan Laurel — certifications, status */
 
   /* Shadcn semantic tokens mapped to the brand palette */
-  --background: #faf6ee;
-  --foreground: #241f1a;
-  --card: #efe4d5;
-  --card-foreground: #241f1a;
-  --popover: #faf6ee;
-  --popover-foreground: #241f1a;
-  --primary: #b96a43;
-  --primary-foreground: #faf6ee;
-  --secondary: #efe4d5;
-  --secondary-foreground: #241f1a;
-  --muted: #efe4d5;
-  --muted-foreground: #a98f6e;
-  --accent: #efe4d5;
-  --accent-foreground: #241f1a;
+  --background: #f4efe6;
+  --foreground: #211d18;
+  --card: #ebe1d3;
+  --card-foreground: #211d18;
+  --popover: #f4efe6;
+  --popover-foreground: #211d18;
+  --primary: #b25f38;
+  --primary-foreground: #f4efe6;
+  --secondary: #ebe1d3;
+  --secondary-foreground: #211d18;
+  --muted: #ebe1d3;
+  --muted-foreground: #a3895f;
+  --accent: #ebe1d3;
+  --accent-foreground: #211d18;
   --destructive: oklch(0.577 0.245 27.325);
   --border: #a98f6e40;
   --input: #a98f6e40;
@@ -65,7 +67,9 @@
   /* Brand colors exposed as Tailwind utilities (bg-bg, text-accent, etc.) */
   --color-bg: var(--color-bg);
   --color-surface: var(--color-surface);
+  --color-surface-deep: var(--color-surface-deep);
   --color-text: var(--color-text);
+  --color-text-soft: var(--color-text-soft);
   --color-accent: var(--color-accent);
   --color-accent-secondary: var(--color-accent-secondary);
   --color-accent-deep: var(--color-accent-deep);
@@ -119,8 +123,41 @@
   }
   body {
     @apply bg-background text-foreground font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
   html {
     @apply font-sans;
+    scroll-behavior: smooth;
   }
+  /* Display serif — sculptural, editorial. Tight optical leading + subtle
+     negative tracking for the "soft monumentality" of luxury property brands. */
+  .font-display {
+    font-feature-settings: "liga" 1, "dlig" 1, "kern" 1;
+    letter-spacing: -0.02em;
+  }
+  /* Selection in warm clay rather than browser default */
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-accent) 22%, transparent);
+    color: var(--color-text);
+  }
+  /* Hairline divider rhythm used across editorial sections */
+  .hairline {
+    border-color: color-mix(in srgb, var(--color-accent-secondary) 28%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* Hero scroll-cue: a clay tick travels down a hairline track */
+@keyframes scrollcue {
+  0%   { transform: translateY(-100%); }
+  50%  { transform: translateY(100%); }
+  100% { transform: translateY(100%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-\[scrollcue_2\.2s_ease-in-out_infinite\] { animation: none; }
 }

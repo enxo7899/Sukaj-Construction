@@ -56,6 +56,8 @@ interface UiStrings {
   statusCompleted: string;
   statusConstruction: string;
   statusPlanned: string;
+  noPricing: string;
+  sectionInquire: string;
 }
 
 interface CaseStudyProps {
@@ -213,7 +215,7 @@ function CaseStudyHero({
 
           <motion.p
             variants={fadeUp}
-            className="font-sans text-sm md:text-base text-text/50 mt-4 md:mt-6 leading-relaxed"
+            className="font-sans text-sm md:text-base text-text-soft mt-4 md:mt-6 leading-relaxed"
           >
             {project.narrative}
           </motion.p>
@@ -277,7 +279,7 @@ function FactsStrip({
 
       {/* No-pricing notice */}
       <p className="mt-6 font-sans text-[8px] tracking-widest uppercase text-text/20">
-        No pricing or availability information is shown — contact us to discuss
+        {ui.noPricing}
       </p>
     </section>
   );
@@ -302,14 +304,14 @@ function TextSection({
         viewport={{ once: true, margin: "-60px" }}
       >
         <motion.div variants={fadeIn} className="flex items-center gap-3 mb-8 md:mb-12">
-          <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-accent">{sectionNumber}</span>
-          <div className="h-px w-8 bg-accent/35" />
-          <span className="font-sans text-[9px] tracking-[0.25em] uppercase text-text/30">{label}</span>
+          <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent">{sectionNumber}</span>
+          <div className="h-px w-10 bg-accent/40" />
+          <span className="font-sans text-[10px] tracking-[0.28em] uppercase text-text-soft">{label}</span>
         </motion.div>
 
         <motion.p
           variants={fadeUp}
-          className="font-sans text-base md:text-lg text-text/60 leading-relaxed max-w-2xl"
+          className="font-sans text-base md:text-lg text-text-soft leading-relaxed max-w-2xl"
         >
           {body}
         </motion.p>
@@ -340,9 +342,9 @@ function SensoryPassage({
         viewport={{ once: true, margin: "-60px" }}
       >
         <motion.div variants={fadeIn} className="flex items-center gap-3 mb-10 md:mb-14">
-          <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-accent">04</span>
-          <div className="h-px w-8 bg-accent/35" />
-          <span className="font-sans text-[9px] tracking-[0.25em] uppercase text-text/30">
+          <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent">04</span>
+          <div className="h-px w-10 bg-accent/40" />
+          <span className="font-sans text-[10px] tracking-[0.28em] uppercase text-text-soft">
             {label} {projectName}
           </span>
         </motion.div>
@@ -461,9 +463,9 @@ function Gallery({
         viewport={{ once: true, margin: "-40px" }}
       >
         <motion.div variants={fadeIn} className="flex items-center gap-3 mb-8 md:mb-10">
-          <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-accent">05</span>
-          <div className="h-px w-8 bg-accent/35" />
-          <span className="font-sans text-[9px] tracking-[0.25em] uppercase text-text/30">{ui.sectionGallery}</span>
+          <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent">05</span>
+          <div className="h-px w-10 bg-accent/40" />
+          <span className="font-sans text-[10px] tracking-[0.28em] uppercase text-text-soft">{ui.sectionGallery}</span>
         </motion.div>
 
         {/* Tabs */}
@@ -527,9 +529,9 @@ function CaseStudyCta({
   return (
     <section className="px-6 md:px-14 py-20 md:py-32" aria-label="Project inquiry">
       <div className="flex items-center gap-3 mb-10 md:mb-14">
-        <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-accent">06</span>
-        <div className="h-px w-8 bg-accent/35" />
-        <span className="font-sans text-[9px] tracking-[0.25em] uppercase text-text/30">Inquire</span>
+        <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent">06</span>
+        <div className="h-px w-10 bg-accent/40" />
+        <span className="font-sans text-[10px] tracking-[0.28em] uppercase text-text-soft">{ui.sectionInquire}</span>
       </div>
 
       <motion.div
@@ -547,7 +549,7 @@ function CaseStudyCta({
 
         <motion.p
           variants={fadeUp}
-          className="font-sans text-sm md:text-base text-text/45 mt-6 md:mt-8 leading-relaxed max-w-xs"
+          className="font-sans text-sm md:text-base text-text-soft mt-6 md:mt-8 leading-relaxed max-w-xs"
         >
           {ui.ctaBody}
         </motion.p>

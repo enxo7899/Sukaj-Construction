@@ -49,6 +49,7 @@ export default function AboutPage() {
         body:     t("ctaBody"),
         button:   t("ctaButton"),
       }}
+      sectionInquire={t("sectionInquire")}
     />
   );
 }

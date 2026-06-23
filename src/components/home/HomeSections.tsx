@@ -37,6 +37,7 @@ interface HomeSectionsProps {
   cta:          { headline: string; body: string; button: string };
   featuredProjects: Project[];
   locale: string;
+  misc: { sectionDeveloper: string; sectionHeritage: string; sectionInquire: string };
 }
 
 // ─── Section divider ──────────────────────────────────────────────────────────
@@ -45,7 +46,7 @@ function Divider() {
 }
 
 // ─── Section 2: Positioning statement ────────────────────────────────────────
-function PositioningSection({ headline, body }: { headline: string; body: string }) {
+function PositioningSection({ headline, body, sectionLabel }: { headline: string; body: string; sectionLabel: string }) {
   return (
     <section
       className="px-6 md:px-14 py-20 md:py-32"
@@ -58,16 +59,16 @@ function PositioningSection({ headline, body }: { headline: string; body: string
         viewport={{ once: true, margin: "-80px" }}
       >
         {/* Section label */}
-        <motion.div variants={fadeIn} className="flex items-center gap-3 mb-10 md:mb-14">
-          <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-accent">01</span>
-          <div className="h-px w-8 bg-accent/35" />
-          <span className="font-sans text-[9px] tracking-[0.25em] uppercase text-text/30">Developer · Tirana</span>
+        <motion.div variants={fadeIn} className="flex items-center gap-3.5 mb-12 md:mb-16">
+          <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent">01</span>
+          <div className="h-px w-10 bg-accent/40" />
+          <span className="font-sans text-[10px] tracking-[0.28em] uppercase text-text-soft">{sectionLabel}</span>
         </motion.div>
 
         {/* Headline — unconstrained so it fills the column naturally */}
         <motion.h2
           variants={fadeUp}
-          className="font-display text-[2.2rem] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.04] text-text max-w-5xl"
+          className="font-display font-light text-[2.4rem] sm:text-5xl md:text-6xl lg:text-[4.6rem] leading-[1.02] text-text max-w-5xl"
         >
           {headline}
         </motion.h2>
@@ -75,9 +76,9 @@ function PositioningSection({ headline, body }: { headline: string; body: string
         {/* Body — offset to the right half on desktop */}
         <motion.div
           variants={fadeUp}
-          className="mt-10 md:mt-14 md:flex md:justify-end"
+          className="mt-10 md:mt-16 md:flex md:justify-end"
         >
-          <p className="font-sans text-sm md:text-base text-text/50 leading-relaxed max-w-md">
+          <p className="font-sans text-base md:text-lg text-text-soft leading-relaxed max-w-md">
             {body}
           </p>
         </motion.div>
@@ -108,8 +109,8 @@ function ProjectsSection({
       {/* Section header */}
       <div className="flex items-center justify-between mb-10 md:mb-14">
         <div className="flex items-center gap-3">
-          <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-accent">02</span>
-          <div className="h-px w-8 bg-accent/35" />
+          <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent">02</span>
+          <div className="h-px w-10 bg-accent/40" />
           <h2 className="font-display text-xl md:text-2xl text-text">{heading}</h2>
         </div>
         <Link
@@ -164,11 +165,13 @@ function CredibilityStrip({
   stat2Label, stat2Value,
   stat3Label, stat3Value,
   nipt,
+  sectionLabel,
 }: {
   stat1Label: string; stat1Value: string;
   stat2Label: string; stat2Value: string;
   stat3Label: string; stat3Value: string;
   nipt: string;
+  sectionLabel: string;
 }) {
   const stats = [
     { label: stat1Label, value: stat1Value },
@@ -183,9 +186,9 @@ function CredibilityStrip({
     >
       {/* Section label */}
       <div className="flex items-center gap-3 mb-10 md:mb-14">
-        <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-accent">03</span>
-        <div className="h-px w-8 bg-accent/35" />
-        <span className="font-sans text-[9px] tracking-[0.25em] uppercase text-text/30">Heritage</span>
+        <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent">03</span>
+        <div className="h-px w-10 bg-accent/40" />
+        <span className="font-sans text-[10px] tracking-[0.28em] uppercase text-text-soft">{sectionLabel}</span>
       </div>
 
       <motion.div
@@ -230,7 +233,7 @@ function CredibilityStrip({
 }
 
 // ─── Section 5: Soft CTA ─────────────────────────────────────────────────────
-function CtaSection({ headline, body, button }: { headline: string; body: string; button: string }) {
+function CtaSection({ headline, body, button, sectionLabel }: { headline: string; body: string; button: string; sectionLabel: string }) {
   return (
     <section
       className="px-6 md:px-14 py-20 md:py-36"
@@ -238,9 +241,9 @@ function CtaSection({ headline, body, button }: { headline: string; body: string
     >
       {/* Section label */}
       <div className="flex items-center gap-3 mb-10 md:mb-14">
-        <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-accent">04</span>
-        <div className="h-px w-8 bg-accent/35" />
-        <span className="font-sans text-[9px] tracking-[0.25em] uppercase text-text/30">Inquire</span>
+        <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent">04</span>
+        <div className="h-px w-10 bg-accent/40" />
+        <span className="font-sans text-[10px] tracking-[0.28em] uppercase text-text-soft">{sectionLabel}</span>
       </div>
 
       <motion.div
@@ -251,31 +254,25 @@ function CtaSection({ headline, body, button }: { headline: string; body: string
       >
         <motion.h2
           variants={fadeUp}
-          className="font-display text-[2.2rem] sm:text-5xl md:text-6xl leading-[1.04] text-text max-w-2xl"
+          className="font-display font-light text-[2.4rem] sm:text-5xl md:text-6xl leading-[1.02] text-text max-w-2xl"
         >
           {headline}
         </motion.h2>
 
         <motion.p
           variants={fadeUp}
-          className="font-sans text-sm md:text-base text-text/45 mt-7 md:mt-9 leading-relaxed max-w-xs md:max-w-sm"
+          className="font-sans text-base md:text-lg text-text-soft mt-7 md:mt-9 leading-relaxed max-w-xs md:max-w-md"
         >
           {body}
         </motion.p>
 
-        <motion.div variants={fadeUp} className="mt-10 md:mt-12">
+        <motion.div variants={fadeUp} className="mt-11 md:mt-14">
           <Link
             href="/contact"
-            className="
-              inline-flex items-center gap-4
-              font-sans text-[9px] tracking-[0.24em] uppercase
-              bg-accent hover:bg-accent-deep text-bg
-              px-8 py-4
-              transition-colors duration-300
-            "
+            className="group/cta inline-flex items-center gap-4 font-sans text-[10px] tracking-[0.24em] uppercase bg-accent hover:bg-accent-deep text-bg px-9 py-4 transition-colors duration-300"
           >
             {button}
-            <span aria-hidden="true">→</span>
+            <span aria-hidden="true" className="transition-transform duration-300 group-hover/cta:translate-x-1">→</span>
           </Link>
         </motion.div>
       </motion.div>
@@ -285,7 +282,7 @@ function CtaSection({ headline, body, button }: { headline: string; body: string
 
 // ─── Composed export ──────────────────────────────────────────────────────────
 export function HomeSections({
-  positioning, projects, credibility, cta, featuredProjects, locale,
+  positioning, projects, credibility, cta, featuredProjects, locale, misc,
 }: HomeSectionsProps) {
   return (
     <>
@@ -293,6 +290,7 @@ export function HomeSections({
       <PositioningSection
         headline={positioning.headline}
         body={positioning.body}
+        sectionLabel={misc.sectionDeveloper}
       />
       <Divider />
       <ProjectsSection
@@ -311,12 +309,14 @@ export function HomeSections({
         stat3Label={credibility.stat3Label}
         stat3Value={credibility.stat3Value}
         nipt={credibility.nipt}
+        sectionLabel={misc.sectionHeritage}
       />
       <Divider />
       <CtaSection
         headline={cta.headline}
         body={cta.body}
         button={cta.button}
+        sectionLabel={misc.sectionInquire}
       />
     </>
   );

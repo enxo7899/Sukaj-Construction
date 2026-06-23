@@ -14,6 +14,7 @@ interface ProjectsContentProps {
   locale: string;
   viewProject: string;
   ui: {
+    label: string;
     heading: string;
     filterAll: string;
     filterCompleted: string;
@@ -58,13 +59,13 @@ export function ProjectsContent({ projects, locale, viewProject, ui }: ProjectsC
             variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: 0.6, ease: EASE } } }}
             className="flex items-center gap-3 mb-8"
           >
-            <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-accent">Projects</span>
-            <div className="h-px w-8 bg-accent/35" />
+            <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent">{ui.label}</span>
+            <div className="h-px w-10 bg-accent/40" />
           </motion.div>
 
           <motion.h1
             variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } } }}
-            className="font-display text-[2.4rem] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.04] text-text"
+            className="font-display font-light text-[2.6rem] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.0] text-text"
           >
             {ui.heading}
           </motion.h1>
@@ -83,7 +84,7 @@ export function ProjectsContent({ projects, locale, viewProject, ui }: ProjectsC
                 px-4 py-2.5 border transition-colors duration-200
                 ${activeFilter === key
                   ? "bg-text text-bg border-text"
-                  : "bg-transparent text-text/45 border-accent-secondary/20 hover:text-text hover:border-accent-secondary/45"
+                  : "bg-transparent text-text-soft border-accent-secondary/20 hover:text-text hover:border-accent-secondary/45"
                 }
               `}
             >

@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
-import { projects, getProjectBySlug } from "@/data/projects";
+import { getProjectBySlug } from "@/data/projects";
 import { CaseStudy } from "@/components/projects/CaseStudy";
 
-// Pre-generate one static page per project slug
-export function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.slug }));
-}
+// Rendered on demand (dynamic) — consistent with the other localized routes.
+// next-intl Server-Component APIs opt into dynamic rendering, so we don't
+// pre-generate these statically.
 
 export async function generateMetadata({
   params,
@@ -27,12 +25,14 @@ export default async function ProjectCasePage({
 }: {
   params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const project = getProjectBySlug(slug);
   if (!project) notFound();
 
-  // Resolve translations server-side; pass to client component as plain strings
-  const t = useTranslations("projects");
+  // Resolve translations server-side; pass to client component as plain strings.
+  // Async Server Component → must use getTranslations (await), not the
+  // useTranslations hook (which next-intl forbids in async components).
+  const t = await getTranslations({ locale, namespace: "projects" });
 
   return (
     <CaseStudy
@@ -57,9 +57,11 @@ export default async function ProjectCasePage({
         ctaHeadline:       t("case.ctaHeadline"),
         ctaBody:           t("case.ctaBody"),
         ctaButton:         t("case.ctaButton"),
-        statusCompleted:   t("case.statusCompleted"),
-        statusConstruction:t("case.statusConstruction"),
-        statusPlanned:     t("case.statusPlanned"),
+        statusCompleted:    t("case.statusCompleted"),
+        statusConstruction: t("case.statusConstruction"),
+        statusPlanned:      t("case.statusPlanned"),
+        noPricing:          t("case.noPricing"),
+        sectionInquire:     t("case.sectionInquire"),
       }}
     />
   );

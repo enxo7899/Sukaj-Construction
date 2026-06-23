@@ -34,6 +34,7 @@ interface ProcessContentProps {
   hero: { label: string; headline: string; intro: string };
   stages: Stage[];
   cta: { headline: string; body: string; button: string };
+  sectionInquire: string;
 }
 
 // ─── Divider ──────────────────────────────────────────────────────────────────
@@ -54,22 +55,22 @@ function PageHero({ label, headline, intro }: { label: string; headline: string;
         animate="show"
       >
         <motion.div variants={fadeIn} className="flex items-center gap-3 mb-8 md:mb-12">
-          <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-accent">
+          <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent">
             {label}
           </span>
-          <div className="h-px w-8 bg-accent/35" />
+          <div className="h-px w-10 bg-accent/40" />
         </motion.div>
 
         <motion.h1
           variants={fadeUp}
-          className="font-display text-[2.4rem] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.04] text-text max-w-3xl"
+          className="font-display font-light text-[2.6rem] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.0] text-text max-w-3xl"
         >
           {headline}
         </motion.h1>
 
         <motion.p
           variants={fadeUp}
-          className="font-sans text-sm md:text-base text-text/45 mt-6 md:mt-8 leading-relaxed max-w-md"
+          className="font-sans text-sm md:text-base text-text-soft mt-6 md:mt-8 leading-relaxed max-w-md"
         >
           {intro}
         </motion.p>
@@ -96,7 +97,7 @@ function ProcessStage({ number, heading, paragraphs }: Stage) {
         <div className="md:w-72 lg:w-80 flex-shrink-0 mb-8 md:mb-0">
           <motion.p
             variants={fadeIn}
-            className="font-sans text-[9px] tracking-[0.35em] uppercase text-accent mb-4"
+            className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent mb-4"
           >
             {number}
           </motion.p>
@@ -114,7 +115,7 @@ function ProcessStage({ number, heading, paragraphs }: Stage) {
             <motion.p
               key={i}
               variants={fadeUp}
-              className="font-sans text-sm md:text-base text-text/55 leading-relaxed"
+              className="font-sans text-sm md:text-base text-text-soft leading-relaxed"
             >
               {p}
             </motion.p>
@@ -126,13 +127,13 @@ function ProcessStage({ number, heading, paragraphs }: Stage) {
 }
 
 // ─── Page CTA ─────────────────────────────────────────────────────────────────
-function PageCta({ headline, body, button }: { headline: string; body: string; button: string }) {
+function PageCta({ headline, body, button, sectionLabel }: { headline: string; body: string; button: string; sectionLabel: string }) {
   return (
     <section className="px-6 md:px-14 py-20 md:py-36" aria-label="Contact call to action">
       <div className="flex items-center gap-3 mb-10 md:mb-14">
-        <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-accent">05</span>
-        <div className="h-px w-8 bg-accent/35" />
-        <span className="font-sans text-[9px] tracking-[0.25em] uppercase text-text/30">Inquire</span>
+        <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent">05</span>
+        <div className="h-px w-10 bg-accent/40" />
+        <span className="font-sans text-[10px] tracking-[0.28em] uppercase text-text-soft">{sectionLabel}</span>
       </div>
 
       <motion.div
@@ -150,7 +151,7 @@ function PageCta({ headline, body, button }: { headline: string; body: string; b
 
         <motion.p
           variants={fadeUp}
-          className="font-sans text-sm md:text-base text-text/45 mt-7 md:mt-9 leading-relaxed max-w-xs md:max-w-sm"
+          className="font-sans text-sm md:text-base text-text-soft mt-7 md:mt-9 leading-relaxed max-w-xs md:max-w-sm"
         >
           {body}
         </motion.p>
@@ -176,7 +177,7 @@ function PageCta({ headline, body, button }: { headline: string; body: string; b
 }
 
 // ─── Composed export ──────────────────────────────────────────────────────────
-export function ProcessContent({ hero, stages, cta }: ProcessContentProps) {
+export function ProcessContent({ hero, stages, cta, sectionInquire }: ProcessContentProps) {
   return (
     <>
       <PageHero label={hero.label} headline={hero.headline} intro={hero.intro} />
@@ -191,7 +192,7 @@ export function ProcessContent({ hero, stages, cta }: ProcessContentProps) {
         </div>
       ))}
       <Divider />
-      <PageCta headline={cta.headline} body={cta.body} button={cta.button} />
+      <PageCta headline={cta.headline} body={cta.body} button={cta.button} sectionLabel={sectionInquire} />
     </>
   );
 }

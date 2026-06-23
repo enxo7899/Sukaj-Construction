@@ -35,6 +35,7 @@ interface AboutContentProps {
   dev: { label: string; headline: string; p1: string; p2: string; p3: string };
   sisterNote: string;
   cta: { headline: string; body: string; button: string };
+  sectionInquire: string;
 }
 
 // ─── Divider ──────────────────────────────────────────────────────────────────
@@ -55,22 +56,22 @@ function PageHero({ label, headline, subline }: { label: string; headline: strin
         animate="show"
       >
         <motion.div variants={fadeIn} className="flex items-center gap-3 mb-8 md:mb-12">
-          <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-accent">
+          <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent">
             {label}
           </span>
-          <div className="h-px w-8 bg-accent/35" />
+          <div className="h-px w-10 bg-accent/40" />
         </motion.div>
 
         <motion.h1
           variants={fadeUp}
-          className="font-display text-[2.4rem] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.04] text-text max-w-3xl"
+          className="font-display font-light text-[2.6rem] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.0] text-text max-w-3xl"
         >
           {headline}
         </motion.h1>
 
         <motion.p
           variants={fadeUp}
-          className="font-sans text-sm md:text-base text-text/45 mt-6 md:mt-8 leading-relaxed max-w-md"
+          className="font-sans text-sm md:text-base text-text-soft mt-6 md:mt-8 leading-relaxed max-w-md"
         >
           {subline}
         </motion.p>
@@ -91,9 +92,9 @@ function Timeline({
     <section className="px-6 md:px-14 py-16 md:py-24" aria-label="Company history">
       {/* Section label */}
       <div className="flex items-center gap-3 mb-12 md:mb-16">
-        <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-accent">01</span>
-        <div className="h-px w-8 bg-accent/35" />
-        <span className="font-sans text-[9px] tracking-[0.25em] uppercase text-text/30">{label}</span>
+        <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent">01</span>
+        <div className="h-px w-10 bg-accent/40" />
+        <span className="font-sans text-[10px] tracking-[0.28em] uppercase text-text-soft">{label}</span>
       </div>
 
       {/* Timeline entries */}
@@ -135,7 +136,7 @@ function Timeline({
               </motion.h3>
               <motion.p
                 variants={fadeUp}
-                className="font-sans text-sm md:text-base text-text/50 leading-relaxed max-w-lg"
+                className="font-sans text-sm md:text-base text-text-soft leading-relaxed max-w-lg"
               >
                 {entry.body}
               </motion.p>
@@ -171,9 +172,9 @@ function DeveloperSection({
       >
         {/* Section label */}
         <motion.div variants={fadeIn} className="flex items-center gap-3 mb-10 md:mb-14">
-          <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-accent">02</span>
-          <div className="h-px w-8 bg-accent/35" />
-          <span className="font-sans text-[9px] tracking-[0.25em] uppercase text-text/30">{label}</span>
+          <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent">02</span>
+          <div className="h-px w-10 bg-accent/40" />
+          <span className="font-sans text-[10px] tracking-[0.28em] uppercase text-text-soft">{label}</span>
         </motion.div>
 
         {/* Two-column layout: headline left, body right on desktop */}
@@ -188,19 +189,19 @@ function DeveloperSection({
           <div className="flex-1 space-y-5 md:pt-1">
             <motion.p
               variants={fadeUp}
-              className="font-sans text-sm md:text-base text-text/55 leading-relaxed"
+              className="font-sans text-sm md:text-base text-text-soft leading-relaxed"
             >
               {p1}
             </motion.p>
             <motion.p
               variants={fadeUp}
-              className="font-sans text-sm md:text-base text-text/55 leading-relaxed"
+              className="font-sans text-sm md:text-base text-text-soft leading-relaxed"
             >
               {p2}
             </motion.p>
             <motion.p
               variants={fadeUp}
-              className="font-sans text-sm md:text-base text-text/55 leading-relaxed"
+              className="font-sans text-sm md:text-base text-text-soft leading-relaxed"
             >
               {p3}
             </motion.p>
@@ -229,14 +230,14 @@ function SisterNote({ note }: { note: string }) {
 }
 
 // ─── Page CTA ─────────────────────────────────────────────────────────────────
-function PageCta({ headline, body, button }: { headline: string; body: string; button: string }) {
+function PageCta({ headline, body, button, sectionLabel }: { headline: string; body: string; button: string; sectionLabel: string }) {
   return (
     <section className="px-6 md:px-14 py-20 md:py-36" aria-label="Contact call to action">
       {/* Section label */}
       <div className="flex items-center gap-3 mb-10 md:mb-14">
-        <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-accent">03</span>
-        <div className="h-px w-8 bg-accent/35" />
-        <span className="font-sans text-[9px] tracking-[0.25em] uppercase text-text/30">Inquire</span>
+        <span className="font-sans text-[10px] tracking-[0.3em] uppercase text-accent">03</span>
+        <div className="h-px w-10 bg-accent/40" />
+        <span className="font-sans text-[10px] tracking-[0.28em] uppercase text-text-soft">{sectionLabel}</span>
       </div>
 
       <motion.div
@@ -254,7 +255,7 @@ function PageCta({ headline, body, button }: { headline: string; body: string; b
 
         <motion.p
           variants={fadeUp}
-          className="font-sans text-sm md:text-base text-text/45 mt-7 md:mt-9 leading-relaxed max-w-xs md:max-w-sm"
+          className="font-sans text-sm md:text-base text-text-soft mt-7 md:mt-9 leading-relaxed max-w-xs md:max-w-sm"
         >
           {body}
         </motion.p>
@@ -288,6 +289,7 @@ export function AboutContent({
   dev,
   sisterNote,
   cta,
+  sectionInquire,
 }: AboutContentProps) {
   return (
     <>
@@ -304,7 +306,7 @@ export function AboutContent({
       />
       <SisterNote note={sisterNote} />
       <Divider />
-      <PageCta headline={cta.headline} body={cta.body} button={cta.button} />
+      <PageCta headline={cta.headline} body={cta.body} button={cta.button} sectionLabel={sectionInquire} />
     </>
   );
 }

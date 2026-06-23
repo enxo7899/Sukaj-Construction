@@ -24,6 +24,7 @@ const menuVariants = {
 export function Header() {
   const t       = useTranslations("nav");
   const tLocale = useTranslations("locale");
+  const tMisc   = useTranslations("misc");
   const locale  = useLocale();
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -67,7 +68,7 @@ export function Header() {
             <Link
               key={key}
               href={href}
-              className="font-sans text-[10px] tracking-widest uppercase text-text/55 hover:text-accent transition-colors duration-200"
+              className="font-sans text-[10px] tracking-widest uppercase text-text/70 hover:text-accent transition-colors duration-200"
             >
               {t(key)}
             </Link>
@@ -96,7 +97,7 @@ export function Header() {
           <button
             className="flex flex-col items-center justify-center gap-[5px] w-7 h-7"
             onClick={() => setMenuOpen((v) => !v)}
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-label={menuOpen ? tMisc("closeMenu") : tMisc("openMenu")}
             aria-expanded={menuOpen}
           >
             <motion.span
@@ -155,7 +156,7 @@ export function Header() {
               className="border-t border-accent-secondary/15 pt-5 flex items-end justify-between"
             >
               <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-text/25">
-                Tirana · Albania · Est. 2010
+                {tMisc("tagline")}
               </p>
             </motion.div>
           </motion.div>

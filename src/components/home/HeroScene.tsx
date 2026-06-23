@@ -8,7 +8,7 @@
 
 import { useRef, useEffect, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { PerformanceMonitor } from "@react-three/drei";
+import { PerformanceMonitor, ContactShadows, Float } from "@react-three/drei";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import * as THREE from "three";
@@ -30,9 +30,11 @@ const PODIUM_Y = -1.55;
 const BODY_Y   = -0.15;
 const CROWN_Y  =  1.55;
 
-// Warm travertine solid — clear contrast against #FAF6EE with enough warmth
-// to feel like natural stone once the wireframe dissolves.
-const SOLID_COLOR = "#AE9575";
+// Warm travertine solid — natural limestone read once the wireframe dissolves.
+// Per-volume tints give the massing depth instead of one flat monolith.
+const SOLID_COLOR  = "#C6B193"; // body — warm travertine
+const PODIUM_COLOR = "#B49B79"; // podium — grounded, slightly deeper
+const CROWN_COLOR  = "#D2C0A4"; // crown — catches more light
 
 // ─── CameraRig ─────────────────────────────────────────────────────────────────
 function CameraRig({
@@ -43,16 +45,16 @@ function CameraRig({
   const { camera } = useThree();
 
   useEffect(() => {
-    camera.position.set(0, 0.3, 4.4);
-    camera.lookAt(0.4, 0, 0);
+    camera.position.set(0, 0.55, 4.7);
+    camera.lookAt(0.5, 0.4, 0);
   }, [camera]);
 
   useFrame(() => {
     const p = scrollProgress.current;
     // Restrained dolly in + slight upward drift as user scrolls past the hero.
-    camera.position.z = THREE.MathUtils.lerp(4.4, 3.6, p);
-    camera.position.y = THREE.MathUtils.lerp(0.3, 0.7, p);
-    camera.lookAt(0.4, 0, 0);
+    camera.position.z = THREE.MathUtils.lerp(4.7, 4.1, p);
+    camera.position.y = THREE.MathUtils.lerp(0.55, 0.95, p);
+    camera.lookAt(0.5, 0.4, 0);
   });
 
   return null;
@@ -77,13 +79,20 @@ function TowerScene({ reducedMotion }: { reducedMotion: boolean }) {
 
   useFrame(() => {
     const p = progress.current;
+    // The monument resolves to an elegant *hybrid*: a translucent travertine
+    // mass held inside crisp terracotta linework — an architectural drawing
+    // that has been gently materialised, not a hard wireframe→solid cut.
+    // This reads as premium on both software and GPU renderers.
     for (const m of wireRefs.current) {
-      if (m) m.opacity = 1 - p;
+      if (m) m.opacity = Math.max(1 - p, 0.9 * p);
     }
     for (const m of solidRefs.current) {
-      if (m) m.opacity = p;
+      if (m) m.opacity = 0.5 * p;
     }
   });
+
+  // Per-volume stone tint — podium grounded, crown catches light.
+  const solidColors = [PODIUM_COLOR, SOLID_COLOR, CROWN_COLOR];
 
   const setWireRef = (i: number) => (el: THREE.LineBasicMaterial | null) => {
     if (el) wireRefs.current[i] = el;
@@ -102,36 +111,44 @@ function TowerScene({ reducedMotion }: { reducedMotion: boolean }) {
     { solid: CROWN_GEO,  edges: CROWN_EDGES,  y: CROWN_Y },
   ];
 
-  return (
+  // Gentle idle motion gives the monument life; skipped under reduced motion.
+  const content = (
     // Offset right so tower sits in the right half while headline text claims
     // the left. Slight Y-axis rotation gives a 3-quarter perspective read.
     <group position={[1.0, -0.1, 0]} rotation={[0, -0.25, 0]}>
       {volumes.map(({ solid, edges, y }, i) => (
         <group key={i} position={[0, y, 0]}>
-          {/* Wireframe layer — terracotta glow, fades out */}
-          <lineSegments geometry={edges}>
+          {/* Solid layer — translucent warm stone */}
+          <mesh geometry={solid} castShadow receiveShadow>
+            <meshStandardMaterial
+              ref={setSolidRef(i)}
+              color={solidColors[i]}
+              roughness={0.78}
+              metalness={0.02}
+              transparent
+              opacity={reducedMotion ? 0.42 : 0}
+            />
+          </mesh>
+          {/* Wireframe layer — crisp iron-red linework that holds the form */}
+          <lineSegments geometry={edges} renderOrder={1}>
             <lineBasicMaterial
               ref={setWireRef(i)}
-              color="#B96A43"
+              color="#8A3D1C"
               transparent
-              opacity={reducedMotion ? 0 : 1}
+              opacity={reducedMotion ? 0.9 : 1}
               depthWrite={false}
             />
           </lineSegments>
-          {/* Solid layer — warm stone, fades in */}
-          <mesh geometry={solid}>
-            <meshStandardMaterial
-              ref={setSolidRef(i)}
-              color={SOLID_COLOR}
-              roughness={0.88}
-              metalness={0.04}
-              transparent
-              opacity={reducedMotion ? 1 : 0}
-            />
-          </mesh>
         </group>
       ))}
     </group>
+  );
+
+  if (reducedMotion) return content;
+  return (
+    <Float speed={1.1} rotationIntensity={0.12} floatIntensity={0.22} floatingRange={[-0.04, 0.04]}>
+      {content}
+    </Float>
   );
 }
 
@@ -157,10 +174,10 @@ export function HeroScene({ reducedMotion }: { reducedMotion: boolean }) {
   }, [reducedMotion]);
 
   return (
-    <div ref={containerRef} className="absolute inset-0">
+    <div ref={containerRef} className="absolute inset-0" aria-hidden="true">
       <Canvas
         dpr={dpr}
-        camera={{ position: [0, 0.3, 4.4], fov: 40 }}
+        camera={{ position: [0, 0.55, 4.7], fov: 38 }}
         gl={{ antialias: true, alpha: true }}
         style={{ background: "transparent" }}
       >
@@ -171,13 +188,13 @@ export function HeroScene({ reducedMotion }: { reducedMotion: boolean }) {
 
         {/* Three-point lighting for architectural model quality */}
 
-        {/* Warm ambient base */}
-        <ambientLight intensity={0.5} color="#FFF8F0" />
+        {/* Warm ambient base — raised so the translucent stone reads evenly */}
+        <ambientLight intensity={0.95} color="#FBF3E8" />
 
-        {/* Key light — warm, upper-right-front */}
+        {/* Key light — warm, upper-right-front, softened to avoid a hard smear */}
         <directionalLight
           position={[4, 7, 3]}
-          intensity={2.4}
+          intensity={1.35}
           color="#FFF4E8"
         />
 
@@ -197,6 +214,20 @@ export function HeroScene({ reducedMotion }: { reducedMotion: boolean }) {
         />
 
         <TowerScene reducedMotion={reducedMotion} />
+
+        {/* Soft contact shadow grounds the monument in warm light instead of
+            leaving it floating against a flat field. */}
+        <group position={[1.0, -1.92, 0]} rotation={[0, -0.25, 0]}>
+          <ContactShadows
+            opacity={0.34}
+            scale={7}
+            blur={2.6}
+            far={4}
+            resolution={512}
+            color="#3a2a1c"
+          />
+        </group>
+
         {!reducedMotion && <CameraRig scrollProgress={scrollProgress} />}
       </Canvas>
     </div>
